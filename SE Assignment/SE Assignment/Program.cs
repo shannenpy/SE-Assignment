@@ -471,9 +471,5 @@ class Vehicle
         return checkvalid;
     }
 }
-class Application
-{
 
-
-}
 
