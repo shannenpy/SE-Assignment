@@ -1,4 +1,12 @@
-﻿User user = new User();
+﻿using SE_Assignment;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+
+User user = new User();
 Vehicle myvehicle2 = new Vehicle("lpn", 2, "car");
 Vehicle myvehicle = new Vehicle("lpn", 1, "car");
 
@@ -109,509 +117,509 @@ else if (option == 3)
     }
 }
 
-interface SeasonParkingPass
-{
-    Vehicle Vehicle { get; set; }
-    int PassID { get; set; }
-    void setVehicle(Vehicle v);
-    void setParkingStatus(string s);
-    string getParkingStatus();
-    void setValidityStatus(string s);
-    string getValidityStatus();
-    string ParkStatus { get; set; }
-    string ValidityStatus { get; set; }
-    int generatePassID();
-}
+//interface SeasonParkingPass
+//{
+//    Vehicle Vehicle { get; set; }
+//    int PassID { get; set; }
+//    void setVehicle(Vehicle v);
+//    void setParkingStatus(string s);
+//    string getParkingStatus();
+//    void setValidityStatus(string s);
+//    string getValidityStatus();
+//    string ParkStatus { get; set; }
+//    string ValidityStatus { get; set; }
+//    int generatePassID();
+//}
 
-class Daily : SeasonParkingPass
-{
-    private string parkStatus;
-    private string validityStatus;
-    private int passID;
-    private int latestPassID;
-    private Vehicle vehicle;
+//class Daily : SeasonParkingPass
+//{
+//    private string parkStatus;
+//    private string validityStatus;
+//    private int passID;
+//    private int latestPassID;
+//    private Vehicle vehicle;
     
-    public Daily(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
-    {
-        vehicle = v;
-        passID = id;
-        parkStatus = "exited";
-        validityStatus = "valid";
-    }
+//    public Daily(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
+//    {
+//        vehicle = v;
+//        passID = id;
+//        parkStatus = "exited";
+//        validityStatus = "valid";
+//    }
     
-    public string ParkStatus
-    {
-        get => parkStatus;
-        set => parkStatus = value;
+//    public string ParkStatus
+//    {
+//        get => parkStatus;
+//        set => parkStatus = value;
 
-    }
+//    }
     
-    public string ValidityStatus
-    {
+//    public string ValidityStatus
+//    {
 
-        get => validityStatus;
-        set => validityStatus = value;
-    }
+//        get => validityStatus;
+//        set => validityStatus = value;
+//    }
     
-    public int PassID
-    {
-        get => passID;
-        set => passID = value;
+//    public int PassID
+//    {
+//        get => passID;
+//        set => passID = value;
 
-    }
+//    }
     
-    public int LatestPassID
-    {
-        get => latestPassID;
-        set => latestPassID = value;
-    }
+//    public int LatestPassID
+//    {
+//        get => latestPassID;
+//        set => latestPassID = value;
+//    }
     
-    public Vehicle Vehicle
-    {
-        get => vehicle;
-        set => vehicle = value;
+//    public Vehicle Vehicle
+//    {
+//        get => vehicle;
+//        set => vehicle = value;
 
-    }
+//    }
     
-    public int generatePassID()
-    {
-        latestPassID = latestPassID + 1;
-        return latestPassID;
-    }
+//    public int generatePassID()
+//    {
+//        latestPassID = latestPassID + 1;
+//        return latestPassID;
+//    }
     
-    public void setVehicle(Vehicle v)
-    {
-        vehicle = v;
-    }
+//    public void setVehicle(Vehicle v)
+//    {
+//        vehicle = v;
+//    }
     
-    public void setParkingStatus(string s)
-    {
-        parkStatus = s;
+//    public void setParkingStatus(string s)
+//    {
+//        parkStatus = s;
 
-    }
+//    }
     
-    public string getParkingStatus()
-    {
-        if (parkStatus != null)
-        {
-            return parkStatus;
-        }
-        else
-        {
-            return string.Empty;
-        }
+//    public string getParkingStatus()
+//    {
+//        if (parkStatus != null)
+//        {
+//            return parkStatus;
+//        }
+//        else
+//        {
+//            return string.Empty;
+//        }
 
-    }
+//    }
 
-    public void setValidityStatus(string s)
-    {
-        validityStatus = s;
+//    public void setValidityStatus(string s)
+//    {
+//        validityStatus = s;
 
-    }
+//    }
     
-    public string getValidityStatus()
-    {
-        if (validityStatus != null)
-        {
-            return validityStatus;
-        }
-        else
-        {
-            return string.Empty;
-        }
-    }
-}
+//    public string getValidityStatus()
+//    {
+//        if (validityStatus != null)
+//        {
+//            return validityStatus;
+//        }
+//        else
+//        {
+//            return string.Empty;
+//        }
+//    }
+//}
 
-class Monthly : SeasonParkingPass
-{
-    private string parkStatus;
-    private string validityStatus;
-    private int passID;
-    private int latestPassID;
-    private Vehicle vehicle;
+//class Monthly : SeasonParkingPass
+//{
+//    private string parkStatus;
+//    private string validityStatus;
+//    private int passID;
+//    private int latestPassID;
+//    private Vehicle vehicle;
 
-    public Monthly(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
-    {
-        vehicle = v;
-        passID = id;
-        parkStatus = "exited";
-        validityStatus = "valid";
-    }
+//    public Monthly(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
+//    {
+//        vehicle = v;
+//        passID = id;
+//        parkStatus = "exited";
+//        validityStatus = "valid";
+//    }
 
-    public string ParkStatus
-    {
-        get => parkStatus;
-        set => parkStatus = value;
-    }
+//    public string ParkStatus
+//    {
+//        get => parkStatus;
+//        set => parkStatus = value;
+//    }
     
-    public string ValidityStatus
-    {
-        get => validityStatus;
-        set => validityStatus = value;
-    }
+//    public string ValidityStatus
+//    {
+//        get => validityStatus;
+//        set => validityStatus = value;
+//    }
     
-    public int PassID
-    {
-        get => passID;
-        set => passID = value;
-    }
+//    public int PassID
+//    {
+//        get => passID;
+//        set => passID = value;
+//    }
 
-    public int LatestPassID
-    {
-        get => latestPassID;
-        set => latestPassID = value;
-    }
+//    public int LatestPassID
+//    {
+//        get => latestPassID;
+//        set => latestPassID = value;
+//    }
 
-    public Vehicle Vehicle
-    {
-        get => vehicle;
-        set => vehicle = value;
-    }
+//    public Vehicle Vehicle
+//    {
+//        get => vehicle;
+//        set => vehicle = value;
+//    }
 
-    public void setVehicle(Vehicle v)
-    {
-        vehicle = v;
-    }
+//    public void setVehicle(Vehicle v)
+//    {
+//        vehicle = v;
+//    }
 
-    public void setParkingStatus(string s)
-    {
-        parkStatus = s;
-    }
+//    public void setParkingStatus(string s)
+//    {
+//        parkStatus = s;
+//    }
 
-    public string getParkingStatus()
-    {
-        if (parkStatus != null)
-        {
-            return parkStatus;
-        }
-        else
-        {
-            return string.Empty;
-        }
-    }
+//    public string getParkingStatus()
+//    {
+//        if (parkStatus != null)
+//        {
+//            return parkStatus;
+//        }
+//        else
+//        {
+//            return string.Empty;
+//        }
+//    }
     
-    public void setValidityStatus(string s)
-    {
-        validityStatus = s;
+//    public void setValidityStatus(string s)
+//    {
+//        validityStatus = s;
 
-    }
+//    }
     
-    public string getValidityStatus()
-    {
-        if (validityStatus != null)
-        {
-            return validityStatus;
-        }
-        else
-        {
-            return string.Empty;
-        }
-    }
+//    public string getValidityStatus()
+//    {
+//        if (validityStatus != null)
+//        {
+//            return validityStatus;
+//        }
+//        else
+//        {
+//            return string.Empty;
+//        }
+//    }
     
-    public int generatePassID()
-    {
-        latestPassID = latestPassID + 1;
-        return latestPassID;
-    }
+//    public int generatePassID()
+//    {
+//        latestPassID = latestPassID + 1;
+//        return latestPassID;
+//    }
 
-    public void setPassID(int id)
-    {
-        passID = id;
-    }
-}
+//    public void setPassID(int id)
+//    {
+//        passID = id;
+//    }
+//}
 
-class User : Observer
-{
-    private int id {  get; set; }
-    private string name { get; set; }
-    private int userType { get; set; } // 0 for staff, 1 for student
-    private string username { get; set; }
-    private string password { get; set; }
-    private string mobileNo { get; set; }
-    private List<SeasonParkingPass>? SPPList { get; set; }
-    private Subject? monthlyCollection { get; set; }
+//class User : Observer
+//{
+//    private int id {  get; set; }
+//    private string name { get; set; }
+//    private int userType { get; set; } // 0 for staff, 1 for student
+//    private string username { get; set; }
+//    private string password { get; set; }
+//    private string mobileNo { get; set; }
+//    private List<SeasonParkingPass>? SPPList { get; set; }
+//    private Subject? monthlyCollection { get; set; }
 
-    public void addSPPList(SeasonParkingPass spp)
-    {
-        if (SPPList == null)
-        {
-            SPPList = new List<SeasonParkingPass>();
-        }
-        SPPList.Add(spp);
-    }
+//    public void addSPPList(SeasonParkingPass spp)
+//    {
+//        if (SPPList == null)
+//        {
+//            SPPList = new List<SeasonParkingPass>();
+//        }
+//        SPPList.Add(spp);
+//    }
     
-    public bool checkPassValidity()
-    {
-        if (SPPList != null)
-        {
-            foreach (SeasonParkingPass p in SPPList)
-            {
-                if (p.getParkingStatus() == "exited" && p.getValidityStatus() == "valid")
-                {
-                    return true;
-                }
-            }
+//    public bool checkPassValidity()
+//    {
+//        if (SPPList != null)
+//        {
+//            foreach (SeasonParkingPass p in SPPList)
+//            {
+//                if (p.getParkingStatus() == "exited" && p.getValidityStatus() == "valid")
+//                {
+//                    return true;
+//                }
+//            }
 
-        }
-        return false;
-    }
+//        }
+//        return false;
+//    }
     
-    public void displayPassValidity()
-    {
-        int count = 0;
-        if (SPPList != null)
-        {
-            foreach (SeasonParkingPass p in SPPList)
-            {
-                count = count + 1;
-                if (p.getParkingStatus() == "exited" && p.getValidityStatus() == "valid")
-                {
-                    Console.Write("\nVehicle {0} details\n", count);
-                    (p.Vehicle).printVehicleDetails(p.Vehicle);
-                }
-            }
-        }
-    }
+//    public void displayPassValidity()
+//    {
+//        int count = 0;
+//        if (SPPList != null)
+//        {
+//            foreach (SeasonParkingPass p in SPPList)
+//            {
+//                count = count + 1;
+//                if (p.getParkingStatus() == "exited" && p.getValidityStatus() == "valid")
+//                {
+//                    Console.Write("\nVehicle {0} details\n", count);
+//                    (p.Vehicle).printVehicleDetails(p.Vehicle);
+//                }
+//            }
+//        }
+//    }
     
-    public Vehicle? getVehicle(int orderinlist)
-    {
-        if (SPPList != null)
-        {
+//    public Vehicle? getVehicle(int orderinlist)
+//    {
+//        if (SPPList != null)
+//        {
 
-            return SPPList[orderinlist].Vehicle;
+//            return SPPList[orderinlist].Vehicle;
 
-        }
-        else
-        {
-            return null;
-        }
-    }
+//        }
+//        else
+//        {
+//            return null;
+//        }
+//    }
     
-    public SeasonParkingPass? getPass(int orderinlist)
-    {
-        if (SPPList != null)
-        {
+//    public SeasonParkingPass? getPass(int orderinlist)
+//    {
+//        if (SPPList != null)
+//        {
 
-            return SPPList[orderinlist];
+//            return SPPList[orderinlist];
 
-        }
-        return null;
-    }
+//        }
+//        return null;
+//    }
 
-    public void update(int passesLeft)
-    {
-        //implementation
-    }
+//    public void update(int passesLeft)
+//    {
+//        //implementation
+//    }
 
-    public void setMonthlyCollection(Subject mc)
-    {
-        monthlyCollection = mc;
-        mc.registerObserver(this);
-    }
+//    public void setMonthlyCollection(Subject mc)
+//    {
+//        monthlyCollection = mc;
+//        mc.registerObserver(this);
+//    }
 
-    public Application applySeasonPass(int type)
-    {
-        Application application = new Application();
-        return application;
-    }
-}
+//    public Application applySeasonPass(int type)
+//    {
+//        Application application = new Application();
+//        return application;
+//    }
+//}
 
-class Vehicle
-{
-    private SeasonParkingPass? parkingPass;
-    private string licensePlateNumber;
-    private int iuNumber;
-    private string vehicleType;
-    static List<Vehicle>? vehiclesWithPass { get; set; }
+//class Vehicle
+//{
+//    private SeasonParkingPass? parkingPass;
+//    private string licensePlateNumber;
+//    private int iuNumber;
+//    private string vehicleType;
+//    static List<Vehicle>? vehiclesWithPass { get; set; }
     
-    public string LicensePlateNumber
-    {
-        get => licensePlateNumber;
-        set => licensePlateNumber = value;
-    }
+//    public string LicensePlateNumber
+//    {
+//        get => licensePlateNumber;
+//        set => licensePlateNumber = value;
+//    }
     
-    public int IUNumber
-    {
-        get => iuNumber;
-        set => iuNumber = value;
-    }
+//    public int IUNumber
+//    {
+//        get => iuNumber;
+//        set => iuNumber = value;
+//    }
        
-    public string VehicleType
-    {
-        get => vehicleType;
-        set => vehicleType = value;
-    }
+//    public string VehicleType
+//    {
+//        get => vehicleType;
+//        set => vehicleType = value;
+//    }
 
-    public Vehicle(string lpn, int IUnum, string vt)
-    {
-        licensePlateNumber = lpn;
-        iuNumber = IUnum;
-        vehicleType = vt;
-    }
+//    public Vehicle(string lpn, int IUnum, string vt)
+//    {
+//        licensePlateNumber = lpn;
+//        iuNumber = IUnum;
+//        vehicleType = vt;
+//    }
 
-    public void printVehicleDetails(Vehicle v)
-    {
-        Console.WriteLine("License Plate Number:" + v.licensePlateNumber);
-        Console.WriteLine("IU Number:" + v.iuNumber);
-        Console.WriteLine("Vehicle type:" + v.vehicleType);
-    }
+//    public void printVehicleDetails(Vehicle v)
+//    {
+//        Console.WriteLine("License Plate Number:" + v.licensePlateNumber);
+//        Console.WriteLine("IU Number:" + v.iuNumber);
+//        Console.WriteLine("Vehicle type:" + v.vehicleType);
+//    }
     
-    public void setParkingPass(SeasonParkingPass pass)
-    {
-        parkingPass = pass;
-    }
+//    public void setParkingPass(SeasonParkingPass pass)
+//    {
+//        parkingPass = pass;
+//    }
     
-    public bool isMatchVehicleType(Vehicle v)
-    {
-        if (v.vehicleType == this.vehicleType)
-        {
-            return true;
-        }
-        return false;
-    }
+//    public bool isMatchVehicleType(Vehicle v)
+//    {
+//        if (v.vehicleType == this.vehicleType)
+//        {
+//            return true;
+//        }
+//        return false;
+//    }
 
-    public string getLicensePlateNumber(Vehicle v)
-    {
-        return v.licensePlateNumber;
-    }
+//    public string getLicensePlateNumber(Vehicle v)
+//    {
+//        return v.licensePlateNumber;
+//    }
 
-    public int getIUNumber(Vehicle v)
-    {
-        return v.iuNumber;
-    }
+//    public int getIUNumber(Vehicle v)
+//    {
+//        return v.iuNumber;
+//    }
 
-    public string getVehicleType(Vehicle v)
-    {
-        return v.vehicleType;
-    }
+//    public string getVehicleType(Vehicle v)
+//    {
+//        return v.vehicleType;
+//    }
 
-    public void addVehiclesWithPass(Vehicle v)
-    {
-        if (vehiclesWithPass == null)
-        {
-            vehiclesWithPass = new List<Vehicle>();
-        }
-        vehiclesWithPass.Add(v);
-    }
+//    public void addVehiclesWithPass(Vehicle v)
+//    {
+//        if (vehiclesWithPass == null)
+//        {
+//            vehiclesWithPass = new List<Vehicle>();
+//        }
+//        vehiclesWithPass.Add(v);
+//    }
 
-    public bool checkValidVehicle(Vehicle v)//check if the given vehicle is already in the list of vehicles with parking pass.
-                                            //If it exists in the list, return false as this vehicle cannot have another parking pass transferred to it.
-    {
+//    public bool checkValidVehicle(Vehicle v)//check if the given vehicle is already in the list of vehicles with parking pass.
+//                                            //If it exists in the list, return false as this vehicle cannot have another parking pass transferred to it.
+//    {
 
-        bool checkvalid = true;
+//        bool checkvalid = true;
 
-        if (vehiclesWithPass != null)
-        {
-            foreach (Vehicle vehicle in vehiclesWithPass)
-            {
-                if (vehicle.getLicensePlateNumber(vehicle) == v.getLicensePlateNumber(v) && vehicle.getIUNumber(vehicle) == v.getIUNumber(v) && vehicle.getVehicleType(vehicle) == v.getVehicleType(v))
-                {
-                    checkvalid = false;
-                    return checkvalid;
-                }
-            }
+//        if (vehiclesWithPass != null)
+//        {
+//            foreach (Vehicle vehicle in vehiclesWithPass)
+//            {
+//                if (vehicle.getLicensePlateNumber(vehicle) == v.getLicensePlateNumber(v) && vehicle.getIUNumber(vehicle) == v.getIUNumber(v) && vehicle.getVehicleType(vehicle) == v.getVehicleType(v))
+//                {
+//                    checkvalid = false;
+//                    return checkvalid;
+//                }
+//            }
 
-        }
+//        }
 
-        return checkvalid;
-    }
-}
+//        return checkvalid;
+//    }
+//}
 
-class Carpark
-{
-    private int carparkNo { get; set; }
-    private string description { get; set; }
-    private string location {  get; set; }
-    private double perMinuteRate { get; set; }
+//class Carpark
+//{
+//    private int carparkNo { get; set; }
+//    private string description { get; set; }
+//    private string location {  get; set; }
+//    private double perMinuteRate { get; set; }
 
-    public Carpark(int carparkNo, string description, string location, double perMinuteRate)
-    {
-        this.carparkNo = carparkNo;
-        this.description = description;
-        this.location = location;
-        this.perMinuteRate = perMinuteRate;
-    }
-}
+//    public Carpark(int carparkNo, string description, string location, double perMinuteRate)
+//    {
+//        this.carparkNo = carparkNo;
+//        this.description = description;
+//        this.location = location;
+//        this.perMinuteRate = perMinuteRate;
+//    }
+//}
 
-interface Observer
-{
-    void update(int passesLeft);
-}
+//interface Observer
+//{
+//    void update(int passesLeft);
+//}
 
-interface Subject
-{
-    void registerObserver(Observer o);
-    void removeObserver(Observer o);
-    void notifyObservers();
-}
+//interface Subject
+//{
+//    void registerObserver(Observer o);
+//    void removeObserver(Observer o);
+//    void notifyObservers();
+//}
 
-class MonthlyCollection : Subject 
-{
-    private int maxPasses { get; set; } = 100;
-    private int passesLeft { get; set; }
-    private List<Observer> observers;
+//class MonthlyCollection : Subject 
+//{
+//    private int maxPasses { get; set; } = 100;
+//    private int passesLeft { get; set; }
+//    private List<Observer> observers;
 
-    private static MonthlyCollection uniqueInstance = null;
+//    private static MonthlyCollection uniqueInstance = null;
 
-    private MonthlyCollection()
-    {
-        observers = new List<Observer>();
-    }
+//    private MonthlyCollection()
+//    {
+//        observers = new List<Observer>();
+//    }
 
-    public static MonthlyCollection getInstance()
-    {
-        if (uniqueInstance == null)
-        {
-            uniqueInstance = new MonthlyCollection();
-        }
+//    public static MonthlyCollection getInstance()
+//    {
+//        if (uniqueInstance == null)
+//        {
+//            uniqueInstance = new MonthlyCollection();
+//        }
 
-        return uniqueInstance;
-    }
+//        return uniqueInstance;
+//    }
 
-    public void registerObserver(Observer o)
-    {
-        observers.Add(o);
-    }
+//    public void registerObserver(Observer o)
+//    {
+//        observers.Add(o);
+//    }
 
-    public void removeObserver(Observer o)
-    {
-        observers.Remove(o);
-    }
+//    public void removeObserver(Observer o)
+//    {
+//        observers.Remove(o);
+//    }
 
-    public void notifyObservers()
-    {
-        foreach (Observer o in observers)
-        {
-            o.update(passesLeft);
-        }
-    }
+//    public void notifyObservers()
+//    {
+//        foreach (Observer o in observers)
+//        {
+//            o.update(passesLeft);
+//        }
+//    }
 
-    public void passesChanged()
-    {
-        passesLeft = maxPasses - observers.Count;
-        notifyObservers();
-    }
-}
+//    public void passesChanged()
+//    {
+//        passesLeft = maxPasses - observers.Count;
+//        notifyObservers();
+//    }
+//}
 
-class Application 
-{ 
-    private User user { get; set; }
-    private Guid applicationId { get; set; }
-    private DateTime startMonth { get; set; } // store month only? or whole date?
-    private DateTime endMonth { get; set; }
-    private bool paid { get; set; } // 0 for false, 1 for true
+//class Application 
+//{ 
+//    private User user { get; set; }
+//    private Guid applicationId { get; set; }
+//    private DateTime startMonth { get; set; } // store month only? or whole date?
+//    private DateTime endMonth { get; set; }
+//    private bool paid { get; set; } // 0 for false, 1 for true
 
-    public Application(DateTime startMonth, DateTime endMonth, bool paid = false, User user = null)
-    {
-        this.user = user;
-        this.applicationId = Guid.NewGuid();
-        this.startMonth = startMonth;
-        this.endMonth = endMonth;
-        this.paid = paid;
-    }
+//    public Application(DateTime startMonth, DateTime endMonth, bool paid = false, User user = null)
+//    {
+//        this.user = user;
+//        this.applicationId = Guid.NewGuid();
+//        this.startMonth = startMonth;
+//        this.endMonth = endMonth;
+//        this.paid = paid;
+//    }
 
-    public void setPaid(bool paid)
-    {
-        this.paid = paid;
-    }
-}
+//    public void setPaid(bool paid)
+//    {
+//        this.paid = paid;
+//    }
+//}
