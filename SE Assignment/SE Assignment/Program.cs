@@ -28,7 +28,7 @@ if (option == 1)
     Console.WriteLine("Parking status is set as " + parkingStatus);
 
     string validityStatus = dailypass.getValidityStatus();
-    Console.WriteLine("Validity status is set as " + validityStatus + "\n");
+    Console.WriteLine("Validity status is " + validityStatus + "\n");
 
 }
 else if (option == 2)
@@ -38,7 +38,7 @@ else if (option == 2)
     Console.WriteLine("Parking status is set as " + parkingStatus);
 
     string validityStatus = dailypass.getValidityStatus();
-    Console.WriteLine("Validity status is set as " + validityStatus + "\n");
+    Console.WriteLine("Validity status is " + validityStatus + "\n");
 
 }
 else if (option == 3)
