@@ -19,7 +19,7 @@ user.addSPPList(dailypass);
 Console.WriteLine("options:");
 Console.WriteLine("1. Park car");
 Console.WriteLine("2. Exit carpark");
-Console.WriteLine("3. Transfer Season Parking Pass(same vehicle type)");
+Console.WriteLine("3. Transfer Season Pass(same vehicle type)");
 int option = Convert.ToInt32(Console.ReadLine());
 if (option == 1)
 {
