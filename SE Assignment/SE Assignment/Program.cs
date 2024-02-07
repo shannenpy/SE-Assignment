@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+
 User user = new User();
 Vehicle myvehicle2 = new Vehicle("lpn", 2, "car");
 Vehicle myvehicle = new Vehicle("lpn", 1, "car");
@@ -15,11 +17,16 @@ myvehicle.addVehiclesWithPass(myvehicle2);
 user.addSPPList(d2);
 user.addSPPList(dailypass);
 
+Vehicle g = new Vehicle("lpn", 5, "truck");
+user.addvehicleList(g);
+
+
 //program
 Console.WriteLine("options:");
 Console.WriteLine("1. Park car");
 Console.WriteLine("2. Exit carpark");
 Console.WriteLine("3. Transfer Season Pass(same vehicle type)");
+Console.WriteLine("4. Add a vehicle's details to personal list of vehicles");
 int option = Convert.ToInt32(Console.ReadLine());
 if (option == 1)
 {
@@ -53,111 +60,137 @@ else if (option == 3)
             user.displayPassValidity();
             Console.WriteLine("Which vehicle do you want to transfer parking pass from? Please select the number.");
             int orderinlist = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter the following vehicle details to transfer pass to that vehicle.");
-            Console.Write("license plate number:");
-            string lpn = Convert.ToString(Console.ReadLine());
-            Console.Write("IU number:");
-            int iunum = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Vehicle type:");
-            string vt = Convert.ToString(Console.ReadLine());
-            Vehicle givenVehicle = new Vehicle(lpn, iunum, vt);
-            Vehicle previousVehicle = user.getVehicle(orderinlist - 1);
-            SeasonParkingPass pass = user.getPass(orderinlist - 1);
-            if (previousVehicle.isMatchVehicleType(givenVehicle) == true)
+            Console.WriteLine("Your list of vehicles that currently have no parking pass:");
+            user.displayvehicleList();
+            Console.WriteLine("Which vehicle do you want to transfer parking pass to? Please select the number.");
+            int orderinlist2 = Convert.ToInt32(Console.ReadLine());
+            if ((user).VehicleList != null)
             {
-                bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
-                if (checkvalid == true)
+                Vehicle givenVehicle = (user).VehicleList[orderinlist2 - 1];
+                Vehicle previousVehicle = user.getVehicle(orderinlist - 1);
+                SeasonParkingPass pass = user.getPass(orderinlist - 1);
+                if (previousVehicle.isMatchVehicleType(givenVehicle) == true)
                 {
-                    Console.WriteLine("\nValid Vehicle Details entered\n");
-                    Console.WriteLine("Previous vehicle details\n");
-                    if (previousVehicle != null)
+                    bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
+                    if (checkvalid == true)
                     {
-                        previousVehicle.printVehicleDetails(previousVehicle);
+                        Console.WriteLine("\nValid Vehicle Details entered\n");
+                        Console.WriteLine("Previous vehicle details\n");
+                        if (previousVehicle != null)
+                        {
+                            previousVehicle.printVehicleDetails(previousVehicle);
 
-                    }
-                    Console.WriteLine("\nNew vehicle details\n");
-                    givenVehicle.printVehicleDetails(givenVehicle);
-                    Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
-                    restarttransfer = Convert.ToString(Console.ReadLine());
-                    if (restarttransfer == "yes")
-                    {
-                        pass.setVehicle(givenVehicle);
-                        givenVehicle.setParkingPass(pass);
-                        Console.WriteLine("\nTransfer Complete!\n");
-                        Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
-                        (pass.Vehicle).printVehicleDetails(pass.Vehicle);
+                        }
+                        Console.WriteLine("\nNew vehicle details\n");
+                        givenVehicle.printVehicleDetails(givenVehicle);
+                        Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
+                        restarttransfer = Convert.ToString(Console.ReadLine());
+                        if (restarttransfer == "yes")
+                        {
+                            pass.setVehicle(givenVehicle);
+                            givenVehicle.setParkingPass(pass);
+                            Console.WriteLine("\nTransfer Complete!\n");
+                            Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
+                            (pass.Vehicle).printVehicleDetails(pass.Vehicle);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Restarting transfer process");
+                        }
                     }
                     else
                     {
+                        Console.WriteLine("This vehicle entered has a parking pass already.");
                         Console.WriteLine("Restarting transfer process");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("This vehicle entered has a parking pass already.");
+                    Console.WriteLine("Invalid vehicle type. Not similar vehicle type.");
                     Console.WriteLine("Restarting transfer process");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid vehicle type. Not similar vehicle type.");
-                Console.WriteLine("Restarting transfer process");
+                Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
             }
         }
-    }
-    else
-    {
-        Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
-    }
+           
+        }
 
+    else
+            {
+                Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
+            }
+        
+    
+}
+else if (option == 4)
+{
+    Console.WriteLine("Please enter the following vehicle details to add vehicle to personal list of vehicles");
+    Console.Write("license plate number:");
+    string lpn = Convert.ToString(Console.ReadLine());
+    Console.Write("IU number:");
+    int iunum = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Vehicle type:");
+    string vt = Convert.ToString(Console.ReadLine());
+    Vehicle givenVehicle = new Vehicle(lpn, iunum, vt);
+    user.addvehicleList(givenVehicle);
+    user.displayvehicleList();
 }
 
 
-interface SeasonParkingPass
+abstract class SeasonParkingPass
 {
-    Vehicle Vehicle { get; set; }
-    int PassID { get; set; }
-    void setVehicle(Vehicle v);
-    void setParkingStatus(string s);
-    string getParkingStatus();
-    void setValidityStatus(string s);
-    string getValidityStatus();
-    string ParkStatus { get; set; }
-    string ValidityStatus { get; set; }
-    int LatestPassID { get; set; }
-    int generatePassID();
+    public abstract Vehicle Vehicle { get; set; }
+    public abstract int PassID { get; set; }
+    public abstract void setVehicle(Vehicle v);
+    public abstract void setParkingStatus(string s);
+    public abstract string getParkingStatus();
+    public abstract void setValidityStatus(string s);
+    public abstract string getValidityStatus();
+    public abstract string ParkStatus { get; set; }
+    public abstract string ValidityStatus { get; set; }
+    public abstract int LatestPassID { get; set; }
+    public abstract int generatePassID();
+    public abstract string passType();
+    
 }
 class Daily : SeasonParkingPass
 {
+    public override string passType()
+    {
+        return "d";
+    }
     private string parkStatus;
-    public string ParkStatus
+    public override string ParkStatus
     {
         get => parkStatus;
         set => parkStatus = value;
 
     }
     private string validityStatus;
-    public string ValidityStatus
+    public override string ValidityStatus
     {
 
         get => validityStatus;
         set => validityStatus = value;
     }
     private int passID;
-    public int PassID
+    public override int PassID
     {
         get => passID;
         set => passID = value;
 
     }
     private int latestPassID;
-    public int LatestPassID
+    public override int LatestPassID
     {
         get => latestPassID;
         set => latestPassID = value;
     }
     private Vehicle vehicle;
-    public Vehicle Vehicle
+    public override Vehicle Vehicle
     {
         get => vehicle;
         set => vehicle = value;
@@ -171,21 +204,21 @@ class Daily : SeasonParkingPass
         validityStatus = "valid";
         latestPassID = 1;
     }
-    public int generatePassID()
+    public override int generatePassID()
     {
         latestPassID = latestPassID + 1;
         return latestPassID;
     }
-    public void setVehicle(Vehicle v)
+    public override void setVehicle(Vehicle v)
     {
         vehicle = v;
     }
-    public void setParkingStatus(string s)
+    public override void setParkingStatus(string s)
     {
         parkStatus = s;
 
     }
-    public string getParkingStatus()
+    public override string getParkingStatus()
     {
         if (parkStatus != null)
         {
@@ -197,12 +230,12 @@ class Daily : SeasonParkingPass
         }
 
     }
-    public void setValidityStatus(string s)
+    public override void setValidityStatus(string s)
     {
         validityStatus = s;
 
     }
-    public string getValidityStatus()
+    public override string getValidityStatus()
     {
         if (validityStatus != null)
         {
@@ -221,35 +254,39 @@ class Daily : SeasonParkingPass
 }
 class Monthly : SeasonParkingPass
 {
+    public override string passType()
+    {
+        return "m";
+    }
     private string parkStatus;
-    public string ParkStatus
+    public override string ParkStatus
     {
         get => parkStatus;
         set => parkStatus = value;
 
     }
     private string validityStatus;
-    public string ValidityStatus
+    public override string ValidityStatus
     {
 
         get => validityStatus;
         set => validityStatus = value;
     }
     private int passID;
-    public int PassID
+    public override int PassID
     {
         get => passID;
         set => passID = value;
 
     }
     private int latestPassID;
-    public int LatestPassID
+    public override int LatestPassID
     {
         get => latestPassID;
         set => latestPassID = value;
     }
     private Vehicle vehicle;
-    public Vehicle Vehicle
+    public override Vehicle Vehicle
     {
         get => vehicle;
         set => vehicle = value;
@@ -263,15 +300,15 @@ class Monthly : SeasonParkingPass
         validityStatus = "valid";
         latestPassID = 1;
     }
-    public void setVehicle(Vehicle v)
+    public override void setVehicle(Vehicle v)
     {
         vehicle = v;
     }
-    public void setParkingStatus(string s)
+    public override void setParkingStatus(string s)
     {
         parkStatus = s;
     }
-    public string getParkingStatus()
+    public override string getParkingStatus()
     {
         if (parkStatus != null)
         {
@@ -283,12 +320,12 @@ class Monthly : SeasonParkingPass
         }
 
     }
-    public void setValidityStatus(string s)
+    public override void setValidityStatus(string s)
     {
         validityStatus = s;
 
     }
-    public string getValidityStatus()
+    public override string getValidityStatus()
     {
         if (validityStatus != null)
         {
@@ -300,7 +337,7 @@ class Monthly : SeasonParkingPass
         }
 
     }
-    public int generatePassID()
+    public override int generatePassID()
     {
         latestPassID = latestPassID + 1;
         return latestPassID;
@@ -311,7 +348,43 @@ class Monthly : SeasonParkingPass
 }
 class User
 {
-    private List<SeasonParkingPass>? SPPList { get; set; }
+    private List<Vehicle>? vehicleList;
+    public List<Vehicle>? VehicleList {
+        get => vehicleList;
+        set => vehicleList = value;
+    }
+    private List<SeasonParkingPass>? sppList;
+    public List<SeasonParkingPass>? SPPList
+    {
+        get => sppList;
+        set => sppList = value;
+    }
+    public void addvehicleList(Vehicle v)
+    {
+        if (vehicleList == null)
+        {
+            vehicleList = new List<Vehicle>();
+        }
+        vehicleList.Add(v);
+
+    }
+    public void displayvehicleList()
+    {
+        if (vehicleList != null)
+        {
+            int count = 0;
+
+            foreach (Vehicle v in this.vehicleList)
+            {
+                count = count + 1;
+                Console.Write("\nVehicle {0} details\n", count);
+                Console.WriteLine("License Plate Number:" + v.LicensePlateNumber);
+                Console.WriteLine("IU Number:" + v.IUNumber);
+                Console.WriteLine("Vehicle type:" + v.VehicleType);
+            }
+        }
+    }
+   
     public void addSPPList(SeasonParkingPass spp)
     {
         if (SPPList == null)
