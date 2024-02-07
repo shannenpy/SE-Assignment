@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-User user = new User();
+﻿User user = new User();
 Vehicle myvehicle2 = new Vehicle("lpn", 2, "car");
 Vehicle myvehicle = new Vehicle("lpn", 1, "car");
 
@@ -43,7 +42,6 @@ else if (option == 2)
 }
 else if (option == 3)
 {
-
     string restarttransfer = "no";
     if (user.checkPassValidity() == true)//Continue transfer process if user have a parking pass with parking status, exited and validity status, valid.
     {
@@ -109,9 +107,7 @@ else if (option == 3)
     {
         Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
     }
-
 }
-
 
 interface SeasonParkingPass
 {
@@ -126,42 +122,15 @@ interface SeasonParkingPass
     string ValidityStatus { get; set; }
     int generatePassID();
 }
+
 class Daily : SeasonParkingPass
 {
     private string parkStatus;
-    public string ParkStatus
-    {
-        get => parkStatus;
-        set => parkStatus = value;
-
-    }
     private string validityStatus;
-    public string ValidityStatus
-    {
-
-        get => validityStatus;
-        set => validityStatus = value;
-    }
     private int passID;
-    public int PassID
-    {
-        get => passID;
-        set => passID = value;
-
-    }
     private int latestPassID;
-    public int LatestPassID
-    {
-        get => latestPassID;
-        set => latestPassID = value;
-    }
     private Vehicle vehicle;
-    public Vehicle Vehicle
-    {
-        get => vehicle;
-        set => vehicle = value;
-
-    }
+    
     public Daily(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
     {
         vehicle = v;
@@ -169,20 +138,58 @@ class Daily : SeasonParkingPass
         parkStatus = "exited";
         validityStatus = "valid";
     }
+    
+    public string ParkStatus
+    {
+        get => parkStatus;
+        set => parkStatus = value;
+
+    }
+    
+    public string ValidityStatus
+    {
+
+        get => validityStatus;
+        set => validityStatus = value;
+    }
+    
+    public int PassID
+    {
+        get => passID;
+        set => passID = value;
+
+    }
+    
+    public int LatestPassID
+    {
+        get => latestPassID;
+        set => latestPassID = value;
+    }
+    
+    public Vehicle Vehicle
+    {
+        get => vehicle;
+        set => vehicle = value;
+
+    }
+    
     public int generatePassID()
     {
         latestPassID = latestPassID + 1;
         return latestPassID;
     }
+    
     public void setVehicle(Vehicle v)
     {
         vehicle = v;
     }
+    
     public void setParkingStatus(string s)
     {
         parkStatus = s;
 
     }
+    
     public string getParkingStatus()
     {
         if (parkStatus != null)
@@ -195,11 +202,13 @@ class Daily : SeasonParkingPass
         }
 
     }
+
     public void setValidityStatus(string s)
     {
         validityStatus = s;
 
     }
+    
     public string getValidityStatus()
     {
         if (validityStatus != null)
@@ -210,49 +219,17 @@ class Daily : SeasonParkingPass
         {
             return string.Empty;
         }
-
     }
-
-
-
-
 }
+
 class Monthly : SeasonParkingPass
 {
     private string parkStatus;
-    public string ParkStatus
-    {
-        get => parkStatus;
-        set => parkStatus = value;
-
-    }
     private string validityStatus;
-    public string ValidityStatus
-    {
-
-        get => validityStatus;
-        set => validityStatus = value;
-    }
     private int passID;
-    public int PassID
-    {
-        get => passID;
-        set => passID = value;
-
-    }
     private int latestPassID;
-    public int LatestPassID
-    {
-        get => latestPassID;
-        set => latestPassID = value;
-    }
     private Vehicle vehicle;
-    public Vehicle Vehicle
-    {
-        get => vehicle;
-        set => vehicle = value;
 
-    }
     public Monthly(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
     {
         vehicle = v;
@@ -260,14 +237,47 @@ class Monthly : SeasonParkingPass
         parkStatus = "exited";
         validityStatus = "valid";
     }
+
+    public string ParkStatus
+    {
+        get => parkStatus;
+        set => parkStatus = value;
+    }
+    
+    public string ValidityStatus
+    {
+        get => validityStatus;
+        set => validityStatus = value;
+    }
+    
+    public int PassID
+    {
+        get => passID;
+        set => passID = value;
+    }
+
+    public int LatestPassID
+    {
+        get => latestPassID;
+        set => latestPassID = value;
+    }
+
+    public Vehicle Vehicle
+    {
+        get => vehicle;
+        set => vehicle = value;
+    }
+
     public void setVehicle(Vehicle v)
     {
         vehicle = v;
     }
+
     public void setParkingStatus(string s)
     {
         parkStatus = s;
     }
+
     public string getParkingStatus()
     {
         if (parkStatus != null)
@@ -278,13 +288,14 @@ class Monthly : SeasonParkingPass
         {
             return string.Empty;
         }
-
     }
+    
     public void setValidityStatus(string s)
     {
         validityStatus = s;
 
     }
+    
     public string getValidityStatus()
     {
         if (validityStatus != null)
@@ -295,20 +306,31 @@ class Monthly : SeasonParkingPass
         {
             return string.Empty;
         }
-
     }
+    
     public int generatePassID()
     {
         latestPassID = latestPassID + 1;
         return latestPassID;
     }
 
-
-
+    public void setPassID(int id)
+    {
+        passID = id;
+    }
 }
-class User
+
+class User : Observer
 {
+    private int id {  get; set; }
+    private string name { get; set; }
+    private int userType { get; set; } // 0 for staff, 1 for student
+    private string username { get; set; }
+    private string password { get; set; }
+    private string mobileNo { get; set; }
     private List<SeasonParkingPass>? SPPList { get; set; }
+    private Subject? monthlyCollection { get; set; }
+
     public void addSPPList(SeasonParkingPass spp)
     {
         if (SPPList == null)
@@ -316,8 +338,8 @@ class User
             SPPList = new List<SeasonParkingPass>();
         }
         SPPList.Add(spp);
-
     }
+    
     public bool checkPassValidity()
     {
         if (SPPList != null)
@@ -333,6 +355,7 @@ class User
         }
         return false;
     }
+    
     public void displayPassValidity()
     {
         int count = 0;
@@ -349,6 +372,7 @@ class User
             }
         }
     }
+    
     public Vehicle? getVehicle(int orderinlist)
     {
         if (SPPList != null)
@@ -361,9 +385,8 @@ class User
         {
             return null;
         }
-
-
     }
+    
     public SeasonParkingPass? getPass(int orderinlist)
     {
         if (SPPList != null)
@@ -373,52 +396,71 @@ class User
 
         }
         return null;
-
-
     }
 
+    public void update(int passesLeft)
+    {
+        //implementation
+    }
 
+    public void setMonthlyCollection(Subject mc)
+    {
+        monthlyCollection = mc;
+        mc.registerObserver(this);
+    }
 
+    public Application applySeasonPass(int type)
+    {
+        Application application = new Application();
+        return application;
+    }
 }
+
 class Vehicle
 {
-    private SeasonParkingPass? parkingpass;
+    private SeasonParkingPass? parkingPass;
     private string licensePlateNumber;
+    private int iuNumber;
+    private string vehicleType;
+    static List<Vehicle>? vehiclesWithPass { get; set; }
+    
     public string LicensePlateNumber
     {
         get => licensePlateNumber;
         set => licensePlateNumber = value;
     }
-    static List<Vehicle>? vehiclesWithPass { get; set; }
-    private int iuNumber;
+    
     public int IUNumber
     {
         get => iuNumber;
         set => iuNumber = value;
     }
-    private string vehicleType;
+       
     public string VehicleType
     {
         get => vehicleType;
         set => vehicleType = value;
     }
+
     public Vehicle(string lpn, int IUnum, string vt)
     {
         licensePlateNumber = lpn;
         iuNumber = IUnum;
         vehicleType = vt;
     }
+
     public void printVehicleDetails(Vehicle v)
     {
         Console.WriteLine("License Plate Number:" + v.licensePlateNumber);
         Console.WriteLine("IU Number:" + v.iuNumber);
         Console.WriteLine("Vehicle type:" + v.vehicleType);
-
     }
+    
     public void setParkingPass(SeasonParkingPass pass)
     {
-        parkingpass = pass;
+        parkingPass = pass;
     }
+    
     public bool isMatchVehicleType(Vehicle v)
     {
         if (v.vehicleType == this.vehicleType)
@@ -426,29 +468,32 @@ class Vehicle
             return true;
         }
         return false;
-
     }
+
     public string getLicensePlateNumber(Vehicle v)
     {
         return v.licensePlateNumber;
     }
+
     public int getIUNumber(Vehicle v)
     {
         return v.iuNumber;
     }
+
     public string getVehicleType(Vehicle v)
     {
         return v.vehicleType;
     }
+
     public void addVehiclesWithPass(Vehicle v)
     {
-
         if (vehiclesWithPass == null)
         {
             vehiclesWithPass = new List<Vehicle>();
         }
         vehiclesWithPass.Add(v);
     }
+
     public bool checkValidVehicle(Vehicle v)//check if the given vehicle is already in the list of vehicles with parking pass.
                                             //If it exists in the list, return false as this vehicle cannot have another parking pass transferred to it.
     {
@@ -472,4 +517,101 @@ class Vehicle
     }
 }
 
+class Carpark
+{
+    private int carparkNo { get; set; }
+    private string description { get; set; }
+    private string location {  get; set; }
+    private double perMinuteRate { get; set; }
 
+    public Carpark(int carparkNo, string description, string location, double perMinuteRate)
+    {
+        this.carparkNo = carparkNo;
+        this.description = description;
+        this.location = location;
+        this.perMinuteRate = perMinuteRate;
+    }
+}
+
+interface Observer
+{
+    void update(int passesLeft);
+}
+
+interface Subject
+{
+    void registerObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers();
+}
+
+class MonthlyCollection : Subject 
+{
+    private int maxPasses { get; set; } = 100;
+    private int passesLeft { get; set; }
+    private List<Observer> observers;
+
+    private static MonthlyCollection uniqueInstance = null;
+
+    private MonthlyCollection()
+    {
+        observers = new List<Observer>();
+    }
+
+    public static MonthlyCollection getInstance()
+    {
+        if (uniqueInstance == null)
+        {
+            uniqueInstance = new MonthlyCollection();
+        }
+
+        return uniqueInstance;
+    }
+
+    public void registerObserver(Observer o)
+    {
+        observers.Add(o);
+    }
+
+    public void removeObserver(Observer o)
+    {
+        observers.Remove(o);
+    }
+
+    public void notifyObservers()
+    {
+        foreach (Observer o in observers)
+        {
+            o.update(passesLeft);
+        }
+    }
+
+    public void passesChanged()
+    {
+        passesLeft = maxPasses - observers.Count;
+        notifyObservers();
+    }
+}
+
+class Application 
+{ 
+    private User user { get; set; }
+    private Guid applicationId { get; set; }
+    private DateTime startMonth { get; set; } // store month only? or whole date?
+    private DateTime endMonth { get; set; }
+    private bool paid { get; set; } // 0 for false, 1 for true
+
+    public Application(DateTime startMonth, DateTime endMonth, bool paid = false, User user = null)
+    {
+        this.user = user;
+        this.applicationId = Guid.NewGuid();
+        this.startMonth = startMonth;
+        this.endMonth = endMonth;
+        this.paid = paid;
+    }
+
+    public void setPaid(bool paid)
+    {
+        this.paid = paid;
+    }
+}
