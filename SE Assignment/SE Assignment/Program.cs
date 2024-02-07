@@ -124,6 +124,7 @@ interface SeasonParkingPass
     string getValidityStatus();
     string ParkStatus { get; set; }
     string ValidityStatus { get; set; }
+    int LatestPassID { get; set; }
     int generatePassID();
 }
 class Daily : SeasonParkingPass
@@ -168,6 +169,7 @@ class Daily : SeasonParkingPass
         passID = id;
         parkStatus = "exited";
         validityStatus = "valid";
+        latestPassID = 1;
     }
     public int generatePassID()
     {
@@ -259,6 +261,7 @@ class Monthly : SeasonParkingPass
         passID = id;
         parkStatus = "exited";
         validityStatus = "valid";
+        latestPassID = 1;
     }
     public void setVehicle(Vehicle v)
     {
