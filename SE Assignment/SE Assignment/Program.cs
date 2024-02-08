@@ -56,77 +56,83 @@ else if (option == 2)
 else if (option == 3)
 {
     string restarttransfer = "no";
-    if (user.checkPassValidity() == true)//Continue transfer process if user have a parking pass with parking status, exited and validity status, valid.
+    if ((user).VehicleList != null)
     {
-        while (restarttransfer != "yes")//Restart transfer process if user wants to restart later in the transfer process.
+        if (user.checkPassValidity() == true)//Continue transfer process if user have a parking pass with parking status, exited and validity status, valid.
         {
-            Console.WriteLine("You have the following valid vehicles for transfer:");
-            user.displayPassValidity();
-            Console.WriteLine("Which vehicle do you want to transfer parking pass from? Please select the number.");
-            int orderinlist = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Your list of vehicles that currently have no parking pass:");
-            user.displayvehicleList();
-            Console.WriteLine("Which vehicle do you want to transfer parking pass to? Please select the number.");
-            int orderinlist2 = Convert.ToInt32(Console.ReadLine());
-            if ((user).VehicleList != null)
+            while (restarttransfer != "yes")//Restart transfer process if user wants to restart later in the transfer process.
             {
-                Vehicle givenVehicle = (user).VehicleList[orderinlist2 - 1];
-                Vehicle previousVehicle = user.getVehicle(orderinlist - 1);
-                SeasonParkingPass pass = user.getPass(orderinlist - 1);
-                if (previousVehicle.isMatchVehicleType(givenVehicle) == true)
+                Console.WriteLine("You have the following valid vehicles for transfer:");
+                user.displayPassValidity();
+                Console.WriteLine("Which vehicle do you want to transfer parking pass from? Please select the number.");
+                int orderinlist = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Your list of vehicles that currently have no parking pass:");
+                user.displayvehicleList();
+                Console.WriteLine("Which vehicle do you want to transfer parking pass to? Please select the number.");
+                int orderinlist2 = Convert.ToInt32(Console.ReadLine());
+                if ((user).VehicleList != null)
                 {
-                    bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
-                    if (checkvalid == true)
+                    Vehicle givenVehicle = (user).VehicleList[orderinlist2 - 1];
+                    Vehicle previousVehicle = user.getVehicle(orderinlist - 1);
+                    SeasonParkingPass pass = user.getPass(orderinlist - 1);
+                    if (previousVehicle.isMatchVehicleType(givenVehicle) == true)
                     {
-                        Console.WriteLine("\nValid Vehicle Details entered\n");
-                        Console.WriteLine("Previous vehicle details\n");
-                        if (previousVehicle != null)
+                        bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
+                        if (checkvalid == true)
                         {
-                            previousVehicle.printVehicleDetails(previousVehicle);
+                            Console.WriteLine("\nValid Vehicle Details entered\n");
+                            Console.WriteLine("Previous vehicle details\n");
+                            if (previousVehicle != null)
+                            {
+                                previousVehicle.printVehicleDetails(previousVehicle);
 
-                        }
-                        Console.WriteLine("\nNew vehicle details\n");
-                        givenVehicle.printVehicleDetails(givenVehicle);
-                        Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
-                        restarttransfer = Convert.ToString(Console.ReadLine());
-                        if (restarttransfer == "yes")
-                        {
-                            pass.setVehicle(givenVehicle);
-                            givenVehicle.setParkingPass(pass);
-                            Console.WriteLine("\nTransfer Complete!\n");
-                            Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
-                            (pass.Vehicle).printVehicleDetails(pass.Vehicle);
+                            }
+                            Console.WriteLine("\nNew vehicle details\n");
+                            givenVehicle.printVehicleDetails(givenVehicle);
+                            Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
+                            restarttransfer = Convert.ToString(Console.ReadLine());
+                            if (restarttransfer == "yes")
+                            {
+                                pass.setVehicle(givenVehicle);
+                                givenVehicle.setParkingPass(pass);
+                                Console.WriteLine("\nTransfer Complete!\n");
+                                Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
+                                (pass.Vehicle).printVehicleDetails(pass.Vehicle);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Restarting transfer process");
+                            }
                         }
                         else
                         {
+                            Console.WriteLine("This vehicle entered has a parking pass already.");
                             Console.WriteLine("Restarting transfer process");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("This vehicle entered has a parking pass already.");
+                        Console.WriteLine("Invalid vehicle type. Not similar vehicle type.");
                         Console.WriteLine("Restarting transfer process");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid vehicle type. Not similar vehicle type.");
-                    Console.WriteLine("Restarting transfer process");
+                    Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
                 }
             }
-            else
-            {
-                Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
-            }
-        }
-           
+
         }
 
+        else
+        {
+            Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
+        }
+    }
     else
     {
-        Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
+        Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
     }
-
 }
 else if (option == 4)
 {
