@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 User user = new User();
 Vehicle myvehicle2 = new Vehicle("lpn", 2, "car");
@@ -32,6 +33,7 @@ Console.WriteLine("1. Park car");
 Console.WriteLine("2. Exit carpark");
 Console.WriteLine("3. Transfer Season Pass(same vehicle type)");
 Console.WriteLine("4. Add a vehicle's details to personal list of vehicles");
+Console.WriteLine("5. Renew Season Pass");
 int option = Convert.ToInt32(Console.ReadLine());
 if (option == 1)
 {
@@ -146,6 +148,56 @@ else if (option == 4)
     Vehicle givenVehicle = new Vehicle(lpn, iunum, vt);
     user.addvehicleList(givenVehicle);
     user.displayvehicleList();
+}
+else if (option == 5)
+{
+    bool renewing = true;
+
+    while (renewing = true)
+    {
+        //Use case basic flow 1,2,3
+        Console.WriteLine("Current Season Passes:");
+        user.displaySPPList();
+        Console.Write("Choose Season Pass: ");
+        int spchoice = Convert.ToInt32(Console.ReadLine());
+        
+        //Use case basic flow 4,5
+        Console.Write("Renew Season pass " + spchoice + "? [Y/N]:");
+        string renewchoice = Console.ReadLine();
+        if (renewchoice == "Y")
+        {
+            //Use case basic flow 6,7,8,9
+            user.displaydefaultPaymentMode();
+            Console.WriteLine("1. Confirm payment");
+            Console.WriteLine("2. Change Payment Mode");
+            Console.Write("Choice: ");
+            int confirmpayment = Convert.ToInt32(Console.ReadLine());
+            if (confirmpayment == 1)
+            {
+                //Use case basic flow 10,11,12,13,14
+                //execute make mayment use case
+                SeasonParkingPass userpass = user.getPass(spchoice - 1);
+                Console.WriteLine("Updated Pass Details:");
+                Console.WriteLine("ID: " + userpass.PassID);
+                Console.WriteLine("Start Date: " + userpass.getEndMonth());
+                Console.WriteLine("End Date: " + userpass.getStartMonth());
+                Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
+
+                renewing = false;
+            }
+            else if (confirmpayment == 2)
+            {
+                Console.Write("New Payment mode: ");
+                String newMode = Console.ReadLine();
+                Console.Write("New Card No: ");
+                int newCardNo = Convert.ToInt32(Console.ReadLine());
+                PaymentMode newPaymentMode = new PaymentMode(newMode,newCardNo);
+                user.changepaymentMode(newPaymentMode);
+            }
+        }
+        else { renewing = false; }
+    }
+    
 }
 
 

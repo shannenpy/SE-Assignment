@@ -13,6 +13,17 @@ namespace SE_Assignment
         private int cardNo { get; set; }
         private List<Application> applicationList;
 
+        public string Mode
+        {
+            get => Mode;
+            set => Mode = value;
+        }
+
+        public int CardNo
+        {
+            get => CardNo;
+            set => CardNo = value;
+        }
         public PaymentMode(string mode, int cardNo)
         {
             this.mode = mode;

@@ -16,6 +16,7 @@ namespace SE_Assignment
         private string mobileNo { get; set; }
         private List<SeasonParkingPass>? SPPList { get; set; }
         private List<Vehicle>? vehicleList;
+        private List<PaymentMode>? paymentModeList;
         public List<Vehicle>? VehicleList
         {
             get => vehicleList;
@@ -55,6 +56,23 @@ namespace SE_Assignment
                 SPPList = new List<SeasonParkingPass>();
             }
             SPPList.Add(spp);
+        }
+
+        public void displaySPPList()
+        {
+            if (SPPList != null)
+            {
+                int count = 0;
+                foreach (SeasonParkingPass p in SPPList)
+                {
+                    count++;
+                    Console.WriteLine($"\nSeason Parking Pass {count} details:");
+                    Console.WriteLine("ID: " + p.PassID);
+                    Console.WriteLine("Start Date: " + p.getEndMonth());
+                    Console.WriteLine("End Date: " + p.getStartMonth());
+                    Console.WriteLine("Validity Status: " + p.getValidityStatus());
+                }
+            }
         }
 
         public bool checkPassValidity()
@@ -115,6 +133,7 @@ namespace SE_Assignment
             return null;
         }
 
+
         public void update(int passesLeft)
         {
             //implementation
@@ -131,5 +150,34 @@ namespace SE_Assignment
             Application application = new Application();
             return application;
         }
+
+        //For paymentModeList
+ 
+        public List<PaymentMode>? PaymentModeList
+        {
+            get => paymentModeList;
+            set => paymentModeList = value;
+        }
+
+        public void changepaymentMode(PaymentMode p)
+        {
+            if (paymentModeList == null)
+            {
+                paymentModeList = new List<PaymentMode>();
+            }
+            paymentModeList.Add(p); // Add payment mode to the list
+        }
+
+        public void displaydefaultPaymentMode()
+        {
+            if (paymentModeList != null)
+            {
+                PaymentMode p = paymentModeList[0];
+                Console.WriteLine("\nDefault Payment Mode:\n");
+                Console.WriteLine("Mode: " + p.Mode);
+                Console.WriteLine("Card No.: " + p.CardNo);
+            }
+        }
+
     }
 }

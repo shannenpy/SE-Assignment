@@ -20,6 +20,11 @@ namespace SE_Assignment
         public abstract int LatestPassID { get; set; }
         public abstract int generatePassID();
         public abstract string passType();
-
+        public abstract DateTime startMonth();
+        public abstract DateTime endMonth();
+        public abstract DateTime setStartMonth();
+        public abstract DateTime setEndMonth();
+        public abstract DateTime getStartMonth();
+        public abstract DateTime getEndMonth();
     }
 }
