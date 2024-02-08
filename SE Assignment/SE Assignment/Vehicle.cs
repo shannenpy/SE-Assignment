@@ -11,8 +11,17 @@ namespace SE_Assignment
         private SeasonParkingPass? parkingPass;
         private string licensePlateNumber;
         private int iuNumber;
-        private string vehicleType;
+        private int vehicleType; // 0 for car, 1 for motorcycle
         static List<Vehicle>? vehiclesWithPass { get; set; }
+
+        public Vehicle() { }
+
+        public Vehicle(string licensePlateNumber, int iuNumber, int vehicleType)
+        {
+            this.licensePlateNumber = licensePlateNumber;
+            this.iuNumber = iuNumber;
+            this.vehicleType = vehicleType;
+        }
 
         public string LicensePlateNumber
         {
@@ -26,17 +35,10 @@ namespace SE_Assignment
             set => iuNumber = value;
         }
 
-        public string VehicleType
+        public int VehicleType
         {
             get => vehicleType;
             set => vehicleType = value;
-        }
-
-        public Vehicle(string lpn, int IUnum, string vt)
-        {
-            licensePlateNumber = lpn;
-            iuNumber = IUnum;
-            vehicleType = vt;
         }
 
         public void printVehicleDetails(Vehicle v)
@@ -70,7 +72,7 @@ namespace SE_Assignment
             return v.iuNumber;
         }
 
-        public string getVehicleType(Vehicle v)
+        public int getVehicleType(Vehicle v)
         {
             return v.vehicleType;
         }
@@ -84,8 +86,9 @@ namespace SE_Assignment
             vehiclesWithPass.Add(v);
         }
 
-        public bool checkValidVehicle(Vehicle v)//check if the given vehicle is already in the list of vehicles with parking pass.
-                                                //If it exists in the list, return false as this vehicle cannot have another parking pass transferred to it.
+        //check if the given vehicle is already in the list of vehicles with parking pass.
+        //If it exists in the list, return false as this vehicle cannot have another parking pass transferred to it.
+        public bool checkValidVehicle(Vehicle v)                                              
         {
 
             bool checkvalid = true;
@@ -100,9 +103,7 @@ namespace SE_Assignment
                         return checkvalid;
                     }
                 }
-
             }
-
             return checkvalid;
         }
     }

@@ -9,7 +9,7 @@ namespace SE_Assignment
     class MonthlyCollection : Subject
     {
         private int maxPasses { get; set; } = 100;
-        private int passesLeft { get; set; }
+        private int passesLeft { get; set; } = 2; // todo: change/remove
         private List<Observer> observers;
 
         private static MonthlyCollection uniqueInstance = null;
@@ -32,11 +32,13 @@ namespace SE_Assignment
         public void registerObserver(Observer o)
         {
             observers.Add(o);
+            Console.WriteLine("Observer registered.");
         }
 
         public void removeObserver(Observer o)
         {
             observers.Remove(o);
+            Console.WriteLine("Observer removed.");
         }
 
         public void notifyObservers()
@@ -44,6 +46,7 @@ namespace SE_Assignment
             foreach (Observer o in observers)
             {
                 o.update(passesLeft);
+                Console.WriteLine("Observer notified.");
             }
         }
 
@@ -51,6 +54,11 @@ namespace SE_Assignment
         {
             passesLeft = maxPasses - observers.Count;
             notifyObservers();
+        }
+
+        public int getPassesLeft()
+        {
+            return passesLeft;
         }
     }
 }
