@@ -20,13 +20,13 @@ namespace SE_Assignment
         private Subject? monthlyCollection { get; set; }
         private List<Application> applications { get; set; } = new List<Application>();
 
-        public User() 
+        public User()
         {
             this.SPPList = new List<SeasonParkingPass>();
         }
 
-        public User(string id, string name, int userType, string username, string password, string mobileNo) 
-        { 
+        public User(string id, string name, int userType, string username, string password, string mobileNo)
+        {
             this.id = id;
             this.name = name;
             this.userType = userType;
@@ -120,11 +120,11 @@ namespace SE_Assignment
             Console.WriteLine("Types:");
             Console.WriteLine("1. Daily");
             Console.WriteLine("2. Monthly");
-            
+
             // UC-004 Step 2
             Console.Write("Select season pass type: ");
             type = Convert.ToInt32(Console.ReadLine());
-          
+
             // UC-004 Step 3
             if (type == 2) // if type is monthly
             {
@@ -139,7 +139,7 @@ namespace SE_Assignment
                     // prompt to be placed on waiting list
                     Console.Write("No monthly passes available. Would you like to be placed on the waiting list? (y/n) ");
                     string opt = Console.ReadLine().ToLower();
-                    
+
                     // UC-004 Step 4.3
                     if (opt == "y")
                     {
@@ -172,22 +172,22 @@ namespace SE_Assignment
                     Console.Write("Enter student/staff id (e.g. s12345678): ");
                     id = Console.ReadLine();
                     isValid = Regex.IsMatch(id, regex);
-                    if (!isValid) 
+                    if (!isValid)
                     {
                         Console.WriteLine("Invalid id. Please try again.");
                     }
                 }
                 this.id = id;
-            
-                Console.Write("Enter username: ");            
+
+                Console.Write("Enter username: ");
                 string username = Console.ReadLine();
                 this.username = username;
 
-                Console.Write("Enter password: ");            
+                Console.Write("Enter password: ");
                 string password = Console.ReadLine();
                 this.password = password;
-            
-                Console.Write("Enter mobile number: ");            
+
+                Console.Write("Enter mobile number: ");
                 string mobileNo = Console.ReadLine();
                 this.mobileNo = mobileNo;
             }
@@ -195,25 +195,25 @@ namespace SE_Assignment
             {
                 Console.WriteLine("User details detected and will be used for this application.");
             }
-            
-            Console.Write("Enter start month (e.g. 09/2024): ");            
+
+            Console.Write("Enter start month (e.g. 09/2024): ");
             DateTime startMonth = Convert.ToDateTime("01/" + Console.ReadLine());
-            
+
             Console.Write("Enter end month (e.g. 09/2024): ");
             DateTime endMonth = Convert.ToDateTime("01/" + Console.ReadLine());
 
-            Console.Write("Enter payment mode (0 - cash card, 1 - credit card, 2 - debit card): ");            
+            Console.Write("Enter payment mode (0 - cash card, 1 - credit card, 2 - debit card): ");
             string paymentMode = Console.ReadLine();
-            
+
             Console.Write("Enter vehicle license plate number: ");
-            string lpn = Console.ReadLine();            
-            
+            string lpn = Console.ReadLine();
+
             Console.Write("Enter vehicle IU number: ");
-            int IUnum = Convert.ToInt32(Console.ReadLine());            
-            
+            int IUnum = Convert.ToInt32(Console.ReadLine());
+
             Console.Write("Enter vehicle type (0 - car, 1 - motorcycle): ");
             int vehicleType = Convert.ToInt32(Console.ReadLine());
-            
+
             Vehicle vehicle = new Vehicle(lpn, IUnum, vehicleType);
 
             // UC-004 Step 8 & 9
@@ -228,6 +228,98 @@ namespace SE_Assignment
 
             // UC-004 Step 10
             Console.WriteLine("Application created successfully.");
+            return true;
+        }
+
+        //UC001 - Renew Season Pass
+        private List<PaymentMode>? paymentModeList;
+
+        public void displaySPPList()
+        {
+            if (SPPList != null)
+            {
+                int count = 0;
+                foreach (SeasonParkingPass p in SPPList)
+                {
+                    count++;
+                    Console.WriteLine($"\nSeason Parking Pass {count} details:");
+                    Console.WriteLine("ID: " + p.PassID);
+                    Console.WriteLine("Start Date: " + p.EndDate);
+                    Console.WriteLine("End Date: " + p.StartDate);
+                    Console.WriteLine("Validity Status: " + p.getValidityStatus());
+                }
+            }
+        }
+
+        public void displayDefaultPaymentMode()
+        {
+            if (paymentModeList != null)
+            {
+                PaymentMode p = paymentModeList[0];
+                Console.WriteLine("\nDefault Payment Mode:\n");
+                //Console.WriteLine("Mode: " + p.Mode);
+                //Console.WriteLine("Card No.: " + p.CardNo);
+            }
+        }
+
+        public void changePaymentMode(PaymentMode p)
+        {
+            if (paymentModeList == null)
+            {
+                paymentModeList = new List<PaymentMode>();
+            }
+            paymentModeList.Add(p); // Add payment mode to the list
+        }
+
+        public bool renewSeasonPass()
+        {
+            bool renewing = true;
+
+            while (renewing = true)
+            {
+                //UC001 basic flow 1,2,3
+                Console.WriteLine("Current Season Passes:");
+                displaySPPList();
+                Console.Write("Choose Season Pass: ");
+                int spchoice = Convert.ToInt32(Console.ReadLine());
+
+                //UC001 basic flow 4,5
+                Console.Write("Renew Season pass " + spchoice + "? [Y/N]:");
+                string renewchoice = Console.ReadLine();
+                if (renewchoice == "Y")
+                {
+                    //UC001 basic flow 6,7,8,9
+                    displayDefaultPaymentMode();
+                    Console.WriteLine("1. Confirm payment");
+                    Console.WriteLine("2. Change Payment Mode");
+                    Console.Write("Choice: ");
+                    int confirmpayment = Convert.ToInt32(Console.ReadLine());
+                    if (confirmpayment == 1)
+                    {
+                        //UC001 basic flow 10,11,12,13,14
+                        //execute make mayment use case
+                        SeasonParkingPass userpass = getPass(spchoice - 1);
+                        Console.WriteLine("Updated Pass Details:");
+                        Console.WriteLine("ID: " + userpass.PassID);
+                        Console.WriteLine("Start Date: " + userpass.EndDate);
+                        Console.WriteLine("End Date: " + userpass.StartDate);
+                        Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
+
+                        renewing = false;
+                    }
+                    else if (confirmpayment == 2)
+                    {
+                        Console.Write("New Payment mode: ");
+                        String newMode = Console.ReadLine();
+                        Console.Write("New Card No: ");
+                        int newCardNo = Convert.ToInt32(Console.ReadLine());
+                        PaymentMode newPaymentMode = new PaymentMode(newMode, newCardNo);
+                        changePaymentMode(newPaymentMode);
+                    }
+                }
+                else { renewing = false; }
+            }
+
             return true;
         }
     }
