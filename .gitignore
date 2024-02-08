@@ -1,0 +1,24 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SE Assignment/.vs/ProjectEvaluation/se assignment.metadata.v6.1
+/SE Assignment/.vs/SE Assignment/FileContentIndex/d3f8531a-11e4-4114-a55b-019ac7d894db.vsidx
+/SE Assignment/.vs/SE Assignment/FileContentIndex/dd5f95c3-9daa-47d9-acfa-fe6eb8d6f3ae.vsidx
+*.vsidx
+/SE Assignment/.vs/SE Assignment/FileContentIndex/read.lock
+/SE Assignment/.vs/SE Assignment/v17/.futdcache.v2
+/SE Assignment/.vs/SE Assignment/v17/.suo
+*.bin
+/SE Assignment/.vs/ProjectEvaluation/se assignment.projects.v6.1
+/SE Assignment/.vs/SE Assignment/DesignTimeBuild/.dtbcache.v2
+/SE Assignment/SE Assignment/obj/Debug/net6.0/SE Assignment.AssemblyInfo.cs
+/SE Assignment/SE Assignment/obj/Debug/net6.0/SE Assignment.AssemblyInfoInputs.cache
+/SE Assignment/SE Assignment/obj/Debug/net6.0/SE Assignment.assets.cache
+/SE Assignment/SE Assignment/obj/SE Assignment.csproj.nuget.g.props
+/SE Assignment/SE Assignment/obj/SE Assignment.csproj.nuget.dgspec.json
+/SE Assignment/SE Assignment/obj/project.assets.json
+/SE Assignment/SE Assignment/obj/project.nuget.cache
+/SE Assignment/SE Assignment/obj/Debug/net6.0/SE Assignment.GeneratedMSBuildEditorConfig.editorconfig
+/SE Assignment/SE Assignment/obj/Debug/net6.0/SE Assignment.csproj.AssemblyReference.cache
+/.vs/SE-Assignment/v17/.wsuo
