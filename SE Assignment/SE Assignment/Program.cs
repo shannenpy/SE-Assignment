@@ -128,6 +128,20 @@ else if (option == 3)
     }
 
 }
+else if (option == 4)
+{
+    Console.WriteLine("Please enter the following vehicle details to add vehicle to personal list of vehicles");
+    Console.Write("license plate number:");
+    string lpn = Convert.ToString(Console.ReadLine());
+    Console.Write("IU number:");
+    int iunum = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Vehicle type:");
+    string vt = Convert.ToString(Console.ReadLine());
+    Vehicle givenVehicle = new Vehicle(lpn, iunum, vt);
+    user.addvehicleList(givenVehicle);
+    user.displayvehicleList();
+}
+
 
 
 interface SeasonParkingPass
