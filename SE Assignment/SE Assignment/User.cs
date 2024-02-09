@@ -493,13 +493,13 @@ namespace SE_Assignment
                     {
                         break; // Exit the loop if option is valid
                     }
-                    // UC-003 Step 4.b.1
+                    // UC-003 Step 4.a.1
                     else if (option == count)
                     {
                         Console.WriteLine("Termination cancelled.");
                         return false;
                     }
-                    // UC-003 Step 4.a.1
+                    // UC-003 Step 4.b.1
                     else
                     {
                         Console.WriteLine("Please enter a valid option.");
