@@ -12,91 +12,27 @@ namespace SE_Assignment
         {
             return "m";
         }
-        private string parkStatus;
-        public override string ParkStatus
-        {
-            get => parkStatus;
-            set => parkStatus = value;
-
-        }
-        private string validityStatus;
-        public override string ValidityStatus
-        {
-
-            get => validityStatus;
-            set => validityStatus = value;
-        }
-        private int passID;
-        public override int PassID
-        {
-            get => passID;
-            set => passID = value;
-
-        }
         private int latestPassID;
         public override int LatestPassID
         {
             get => latestPassID;
             set => latestPassID = value;
         }
-        private Vehicle vehicle;
-        public override Vehicle Vehicle
+        private int passID;
+        public override int PassID
         {
-            get => vehicle;
-            set => vehicle = value;
-
+            get => passID;
+            set => passID = value;
         }
         public Monthly(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
         {
-            vehicle = v;
-            passID = id;
-            parkStatus = "exited";
-            validityStatus = "valid";
-            latestPassID = 1;
+            Vehicle = v;
+            PassID = id;
+            ParkStatus = "exited";
+            ValidityStatus = "valid";
+            LatestPassID = 1;
         }
-        public override void setVehicle(Vehicle v)
-        {
-            vehicle = v;
-        }
-        public override void setParkingStatus(string s)
-        {
-            parkStatus = s;
-        }
-        public override string getParkingStatus()
-        {
-            if (parkStatus != null)
-            {
-                return parkStatus;
-            }
-            else
-            {
-                return string.Empty;
-            }
-
-        }
-        public override void setValidityStatus(string s)
-        {
-            validityStatus = s;
-
-        }
-        public override string getValidityStatus()
-        {
-            if (validityStatus != null)
-            {
-                return validityStatus;
-            }
-            else
-            {
-                return string.Empty;
-            }
-
-        }
-        public override int generatePassID()
-        {
-            latestPassID = latestPassID + 1;
-            return latestPassID;
-        }
-
+        
 
 
     }
