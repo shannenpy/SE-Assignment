@@ -461,17 +461,17 @@ namespace SE_Assignment
 
         public bool terminateSeasonPass()
         {
-            // Create user SPPList
-            Vehicle myvehicle = new Vehicle("lpn", 2, 0);
-            List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
-            Daily spp1 = new Daily(myvehicle, 1, "valid", "d", null);
-            SPPList.Add(spp1);
-            Monthly spp2 = new Monthly(myvehicle, 2, "expired", "m", null);
-            SPPList.Add(spp2);
-            Monthly spp3 = new Monthly(myvehicle, 3, "valid", "m", null);
-            SPPList.Add(spp3);
-            Daily spp4 = new Daily(myvehicle, 4, "expired", "d", null);
-            SPPList.Add(spp4);
+            //// Create user SPPList
+            //Vehicle myvehicle = new Vehicle("lpn", 2, 0);
+            //List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
+            //Daily spp1 = new Daily(myvehicle, 1, "valid", "d", null);
+            //SPPList.Add(spp1);
+            //Monthly spp2 = new Monthly(myvehicle, 2, "expired", "m", null);
+            //SPPList.Add(spp2);
+            //Monthly spp3 = new Monthly(myvehicle, 3, "valid", "m", null);
+            //SPPList.Add(spp3);
+            //Daily spp4 = new Daily(myvehicle, 4, "expired", "d", null);
+            //SPPList.Add(spp4);
 
             int count = 0;
             if (SPPList != null)
