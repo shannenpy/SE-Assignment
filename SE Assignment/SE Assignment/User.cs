@@ -499,13 +499,13 @@ namespace SE_Assignment
                     {
                         break; // Exit the loop if option is valid
                     }
-                    // UC-003 Step 4.b.1
+                    // UC-003 Step 4.a.1
                     else if (option == count)
                     {
                         Console.WriteLine("Termination cancelled.");
                         return false;
                     }
-                    // UC-003 Step 4.a.1
+                    // UC-003 Step 4.b.1
                     else
                     {
                         Console.WriteLine("Please enter a valid option.");
@@ -519,7 +519,7 @@ namespace SE_Assignment
                 if (valid == "valid")
                 {
                     // UC-003 Step 6
-                    Console.WriteLine("Enter reason for termination: ");
+                    Console.Write("Enter reason for termination: ");
                     string reason = Console.ReadLine();
                     passChosen.SetTerminationReason(reason);
 
@@ -535,6 +535,8 @@ namespace SE_Assignment
                     {
 
                     }
+                    passChosen.ValidityStatus = "terminated";
+                    Console.WriteLine(passChosen.ValidityStatus + passChosen.terminationReason);
                 }
                 // UC-003 Step 5.1
                 else
@@ -611,5 +613,6 @@ namespace SE_Assignment
         //}
     }
 }
+
 
  
