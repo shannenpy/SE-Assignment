@@ -44,7 +44,37 @@ namespace SE_Assignment
             }
             SPPList.Add(spp);
         }
+        private List<Vehicle>? vehicleList;
+        public List<Vehicle>? VehicleList
+        {
+            get => vehicleList;
+            set => vehicleList = value;
+        }
+        public void addvehicleList(Vehicle v)
+        {
+            if (vehicleList == null)
+            {
+                vehicleList = new List<Vehicle>();
+            }
+            vehicleList.Add(v);
 
+        }
+        public void displayvehicleList()
+        {
+            if (vehicleList != null)
+            {
+                int count = 0;
+
+                foreach (Vehicle v in this.vehicleList)
+                {
+                    count = count + 1;
+                    Console.Write("\nVehicle {0} details\n", count);
+                    Console.WriteLine("License Plate Number:" + v.LicensePlateNumber);
+                    Console.WriteLine("IU Number:" + v.IUNumber);
+                    Console.WriteLine("Vehicle type:" + v.VehicleType);
+                }
+            }
+        }
         public bool checkPassValidity()
         {
             if (SPPList != null)
