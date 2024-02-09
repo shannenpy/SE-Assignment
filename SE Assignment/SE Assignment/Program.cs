@@ -13,8 +13,8 @@ User user = new User();
 
 //Test Case (can be changed)
 PaymentMode p = new PaymentMode("card",987654321);
-Vehicle v = new Vehicle("12345", 123, 1);
-SeasonParkingPass s = new Monthly(v, 10242384, "valid", "m", null);
+Vehicle v = new Vehicle("S235487L", 123, 1);
+SeasonParkingPass s = new Monthly(v, 10242384, "valid", "m", "NIL");
 user.addSPPList(s);
 user.changePaymentMode(p);
 

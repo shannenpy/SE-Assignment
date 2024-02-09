@@ -20,6 +20,7 @@ namespace SE_Assignment
         private List<SeasonParkingPass>? SPPList { get; set; }
         private Subject? monthlyCollection { get; set; }
         private List<Application> applications { get; set; } = new List<Application>();
+        private List<PaymentMode> paymentModeList;
 
         public User()
         {
@@ -263,8 +264,6 @@ namespace SE_Assignment
         }
 
         //UC001 - Renew Season Pass
-        private List<PaymentMode>? paymentModeList;
-
         public void displaySPPList()
         {
             if (SPPList != null)
