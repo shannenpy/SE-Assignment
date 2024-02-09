@@ -57,7 +57,7 @@ switch (opt)
         user.renewSeasonPass();
         break;
     case 3:
-
+        user.transferSeasonPass();
         break;
     case 4: // terminate
         break;

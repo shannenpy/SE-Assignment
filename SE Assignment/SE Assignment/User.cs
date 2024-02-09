@@ -274,8 +274,8 @@ namespace SE_Assignment
                     count++;
                     Console.WriteLine($"\nSeason Parking Pass {count} details:");
                     Console.WriteLine("ID: " + p.PassID);
-                    Console.WriteLine("Start Date: " + p.EndDate);
-                    Console.WriteLine("End Date: " + p.StartDate);
+                    //Console.WriteLine("Start Date: " + p.EndDate);
+                    //Console.WriteLine("End Date: " + p.StartDate);
                     Console.WriteLine("Validity Status: " + p.getValidityStatus());
                 }
             }
@@ -331,8 +331,8 @@ namespace SE_Assignment
                         SeasonParkingPass userpass = getPass(spchoice - 1);
                         Console.WriteLine("Updated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
-                        Console.WriteLine("Start Date: " + userpass.EndDate);
-                        Console.WriteLine("End Date: " + userpass.StartDate);
+                       // Console.WriteLine("Start Date: " + userpass.EndDate);
+                        //Console.WriteLine("End Date: " + userpass.StartDate);
                         Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
 
                         renewing = false;
@@ -350,6 +350,88 @@ namespace SE_Assignment
                 else { renewing = false; }
             }
 
+            return true;
+        }
+        public bool transferSeasonPass()
+        {
+            string restarttransfer = "no";
+            if ((this).VehicleList != null)
+            {
+                if (this.checkPassValidity() == true)//Continue transfer process if user have a parking pass with parking status, exited and validity status, valid.
+                {
+                    while (restarttransfer != "yes")//Restart transfer process if user wants to restart later in the transfer process.
+                    {
+                        Console.WriteLine("You have the following valid vehicles for transfer:");
+                        this.displayPassValidity();
+                        Console.WriteLine("Which vehicle do you want to transfer parking pass from? Please select the number.");
+                        int orderinlist = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Your list of vehicles that currently have no parking pass:");
+                        this.displayvehicleList();
+                        Console.WriteLine("Which vehicle do you want to transfer parking pass to? Please select the number.");
+                        int orderinlist2 = Convert.ToInt32(Console.ReadLine());
+                        if ((this).VehicleList != null)
+                        {
+                            Vehicle givenVehicle = (this).VehicleList[orderinlist2 - 1];
+                            Vehicle previousVehicle = this.getVehicle(orderinlist - 1);
+                            SeasonParkingPass pass = this.getPass(orderinlist - 1);
+                            if (previousVehicle.isMatchVehicleType(givenVehicle) == true)
+                            {
+                                bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
+                                if (checkvalid == true)
+                                {
+                                    Console.WriteLine("\nValid Vehicle Details entered\n");
+                                    Console.WriteLine("Previous vehicle details\n");
+                                    if (previousVehicle != null)
+                                    {
+                                        previousVehicle.printVehicleDetails(previousVehicle);
+
+                                    }
+                                    Console.WriteLine("\nNew vehicle details\n");
+                                    givenVehicle.printVehicleDetails(givenVehicle);
+                                    Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
+                                    restarttransfer = Convert.ToString(Console.ReadLine());
+                                    if (restarttransfer == "yes")
+                                    {
+                                        pass.setVehicle(givenVehicle);
+                                        givenVehicle.setParkingPass(pass);
+                                        Console.WriteLine("\nTransfer Complete!\n");
+                                        Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
+                                        (pass.Vehicle).printVehicleDetails(pass.Vehicle);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Restarting transfer process");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("This vehicle entered has a parking pass already.");
+                                    Console.WriteLine("Restarting transfer process");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid vehicle type. Not similar vehicle type.");
+                                Console.WriteLine("Restarting transfer process");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
+                        }
+                    }
+
+                }
+
+                else
+                {
+                    Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
+            }
             return true;
         }
     }
