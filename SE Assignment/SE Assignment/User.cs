@@ -257,8 +257,8 @@ namespace SE_Assignment
             {
                 PaymentMode p = paymentModeList[0];
                 Console.WriteLine("\nDefault Payment Mode:\n");
-                //Console.WriteLine("Mode: " + p.Mode);
-                //Console.WriteLine("Card No.: " + p.CardNo);
+                Console.WriteLine("Mode: " + p.mode);
+                Console.WriteLine("Card No.: " + p.cardNo);
             }
         }
 
@@ -268,7 +268,7 @@ namespace SE_Assignment
             {
                 paymentModeList = new List<PaymentMode>();
             }
-            paymentModeList.Add(p); // Add payment mode to the list
+            paymentModeList[0] = (p); // Replace default payment mode with new payment mode
         }
 
         public bool renewSeasonPass()
@@ -297,6 +297,7 @@ namespace SE_Assignment
                     if (confirmpayment == 1)
                     {
                         //UC001 basic flow 10,11,12,13,14
+                        //* Only for monthly if current month > pass enddate (expired), check if passes left > 0, update and -= 1 passes left
                         //execute make mayment use case
                         SeasonParkingPass userpass = getPass(spchoice - 1);
                         Console.WriteLine("Updated Pass Details:");

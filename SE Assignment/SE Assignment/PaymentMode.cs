@@ -9,9 +9,10 @@ namespace SE_Assignment
 {
     class PaymentMode
     {
-        private string mode { get; set; }
-        private int cardNo { get; set; }
+        public string mode { get; private set; }
+        public int cardNo { get; private set; }
         private List<Application> applicationList;
+
 
         public PaymentMode(string mode, int cardNo)
         {
