@@ -20,6 +20,7 @@ namespace SE_Assignment
         private List<SeasonParkingPass>? SPPList { get; set; }
         private Subject? monthlyCollection { get; set; }
         private List<Application> applications { get; set; } = new List<Application>();
+        private List<PaymentMode> paymentModeList;
 
         public User()
         {
@@ -263,8 +264,6 @@ namespace SE_Assignment
         }
 
         //UC001 - Renew Season Pass
-        private List<PaymentMode>? paymentModeList;
-
         public void displaySPPList()
         {
             if (SPPList != null)
@@ -347,8 +346,6 @@ namespace SE_Assignment
                         Console.WriteLine("Start Date: " + userpass.startMonth);
                         Console.WriteLine("End Date: " + userpass.endMonth);
                         Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
-
-                        renewing = false;
                     }
                     else if (confirmpayment == 2)
                     {
@@ -358,9 +355,32 @@ namespace SE_Assignment
                         int newCardNo = Convert.ToInt32(Console.ReadLine());
                         PaymentMode newPaymentMode = new PaymentMode(newMode, newCardNo);
                         changePaymentMode(newPaymentMode);
+
+                        displayDefaultPaymentMode();
+                        Console.Write("Confirm payment [Y/N]");
+                        string confirm = Console.ReadLine();
+                        if (confirm == "Y")
+                        {
+                            //UC001 basic flow 10,11,12,13,14
+                            SeasonParkingPass userpass = getPass(spchoice - 1);
+                            if (userpass.passType == "m")
+                            {
+                                userpass.endMonth = DateTime.Now.AddMonths(1);
+                            }
+                            else if (userpass.passType == "d")
+                            { }
+                            //execute make mayment use case
+                            Console.WriteLine("\nUpdated Pass Details:");
+                            Console.WriteLine("ID: " + userpass.PassID);
+                            Console.WriteLine("Start Date: " + userpass.startMonth);
+                            Console.WriteLine("End Date: " + userpass.endMonth);
+                            Console.WriteLine("Validity Status: " + userpass.getValidityStatus() + "\n");
+                        }
                     }
+                    renewing = false;
                 }
-                else { renewing = false; }
+                else 
+                { renewing = false; }
             }
 
             return true;
