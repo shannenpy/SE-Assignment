@@ -26,3 +26,8 @@
 /SE Assignment/SE Assignment/obj/Debug/net6.0/ref
 /SE Assignment/SE Assignment/obj/Debug/net6.0/refint
 /SE Assignment/SE Assignment/obj/Debug/net6.0
+*.config
+*.cs
+*.cache
+*.editorconfig
+/SE Assignment/SE Assignment/Properties/launchSettings.json
