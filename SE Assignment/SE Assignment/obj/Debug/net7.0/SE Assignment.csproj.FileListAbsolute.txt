@@ -1,0 +1,5 @@
+C:\Users\dynoh\OneDrive - Ngee Ann Polytechnic\NP\Year 2\Sem 2\Modules\SE\Assig_Code\SE Assignment\SE Assignment\obj\Debug\net7.0\SE Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dynoh\OneDrive - Ngee Ann Polytechnic\NP\Year 2\Sem 2\Modules\SE\Assig_Code\SE Assignment\SE Assignment\obj\Debug\net7.0\SE Assignment.AssemblyInfoInputs.cache
+C:\Users\dynoh\OneDrive - Ngee Ann Polytechnic\NP\Year 2\Sem 2\Modules\SE\Assig_Code\SE Assignment\SE Assignment\obj\Debug\net7.0\SE Assignment.AssemblyInfo.cs
+C:\Users\dynoh\OneDrive - Ngee Ann Polytechnic\NP\Year 2\Sem 2\Modules\SE\Assig_Code\SE Assignment\SE Assignment\obj\Debug\net7.0\SE Assignment.csproj.CoreCompileInputs.cache
+C:\Users\dynoh\OneDrive - Ngee Ann Polytechnic\NP\Year 2\Sem 2\Modules\SE\Assig_Code\SE Assignment\SE Assignment\obj\Debug\net7.0\SE Assignment.sourcelink.json
