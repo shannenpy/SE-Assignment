@@ -400,7 +400,7 @@ namespace SE_Assignment
                                 bool checkvalid = givenVehicle.checkValidVehicle(givenVehicle);
                                 if (checkvalid == true)
                                 {
-                                    Console.WriteLine("\nValid Vehicle Details entered\n");
+                                    Console.WriteLine("\nValid Vehicle Selected\n");
                                     Console.WriteLine("Previous vehicle details\n");
                                     if (previousVehicle != null)
                                     {
