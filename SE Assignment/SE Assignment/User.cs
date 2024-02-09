@@ -329,12 +329,12 @@ namespace SE_Assignment
                     {
                         //UC001 basic flow 10,11,12,13,14
                         SeasonParkingPass userpass = getPass(spchoice - 1);
-                        if (userpass.passType() == "m")
-                        {
-                            userpass.endMonth = DateTime.Now.AddMonths(1);
-                        }
-                        else if (userpass.passType() == "d")
-                        { }
+                        //if (userpass.passType() == "m")
+                        //{
+                        //    userpass.endMonth = DateTime.Now.AddMonths(1);
+                        //}
+                        //else if (userpass.passType() == "d")
+                        //{ }
                         //execute make mayment use case
                         Console.WriteLine("Updated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
@@ -513,7 +513,7 @@ namespace SE_Assignment
                 if (valid == "valid")
                 {
                     // UC-003 Step 6
-                    Console.WriteLine("Enter reason for termination: ");
+                    Console.Write("Enter reason for termination: ");
                     string reason = Console.ReadLine();
                     passChosen.SetTerminationReason(reason);
 
@@ -529,6 +529,8 @@ namespace SE_Assignment
                     {
 
                     }
+                    passChosen.ValidityStatus = "terminated";
+                    Console.WriteLine(passChosen.ValidityStatus);
                 }
                 // UC-003 Step 5.1
                 else
@@ -605,6 +607,6 @@ namespace SE_Assignment
         //}
     }
 }
-}
+
 
  
