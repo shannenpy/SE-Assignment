@@ -9,9 +9,6 @@ using System.Security.Cryptography;
 
 //User user = new User("s12345678", "Dr Oon", 0, "s12345678", "password123", "91234567");
 User user = new User();
-//adding vehicle to user's personal list of vehicles. (transfer season pass use case)
-Vehicle givenVehicle = new Vehicle("lpn", 1, 0);
-user.addvehicleList(givenVehicle);
 
 MonthlyCollection waitingList = MonthlyCollection.getInstance();
 

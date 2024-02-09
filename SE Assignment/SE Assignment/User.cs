@@ -354,23 +354,38 @@ namespace SE_Assignment
         }
         public bool transferSeasonPass()
         {
+            
+            //Given that the user has a valid daily season pass
+            Vehicle myvehicle = new Vehicle("lpn", 2, 0);
+
+            Daily dailypass = new Daily(myvehicle, 2);
+            //adding this vehicle to list of vehicles with pass
+            myvehicle.addVehiclesWithPass(myvehicle);
+            //adding the pass to user's list of season passes
+            this.addSPPList(dailypass);
+
+
+            //Given that the user has another vehicle added to the user's personal list of vehicles.
+            Vehicle anotherVehicle = new Vehicle("lpn", 1, 0);
+            this.addvehicleList(anotherVehicle);
+
+            //the above lines of code are added to test this feature. This feature can only be used if the user has a vehicle with a valid season pass.
             string restarttransfer = "no";
             if ((this).VehicleList != null)
             {
-                if (this.checkPassValidity() == true)//Continue transfer process if user have a parking pass with parking status, exited and validity status, valid.
+                if (this.checkPassValidity() == true)//Continue transfer process if user have a season pass with parking status, exited and validity status, valid.
                 {
                     while (restarttransfer != "yes")//Restart transfer process if user wants to restart later in the transfer process.
                     {
                         Console.WriteLine("You have the following valid vehicles for transfer:");
                         this.displayPassValidity();
-                        Console.WriteLine("Which vehicle do you want to transfer parking pass from? Please select the number.");
+                        Console.WriteLine("In this list, which vehicle do you want to transfer season pass from? For example, for vehicle 1, enter 1.");
                         int orderinlist = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Your list of vehicles that currently have no parking pass:");
+                        Console.WriteLine("Your list of vehicles that currently have no season pass:");
                         this.displayvehicleList();
-                        Console.WriteLine("Which vehicle do you want to transfer parking pass to? Please select the number.");
+                        Console.WriteLine("In this list of vehicles, which vehicle do you want to transfer season pass to? For example, for vehicle 1, enter 1.");
                         int orderinlist2 = Convert.ToInt32(Console.ReadLine());
-                        if ((this).VehicleList != null)
-                        {
+                        
                             Vehicle givenVehicle = (this).VehicleList[orderinlist2 - 1];
                             Vehicle previousVehicle = this.getVehicle(orderinlist - 1);
                             SeasonParkingPass pass = this.getPass(orderinlist - 1);
@@ -388,14 +403,13 @@ namespace SE_Assignment
                                     }
                                     Console.WriteLine("\nNew vehicle details\n");
                                     givenVehicle.printVehicleDetails(givenVehicle);
-                                    Console.Write("Are you sure you want to transfer pass from the previous vehicle to the new vehicle?");
+                                    Console.WriteLine("Are you sure you want to transfer season pass from the previous vehicle to the new vehicle? Enter yes or no.");
                                     restarttransfer = Convert.ToString(Console.ReadLine());
                                     if (restarttransfer == "yes")
                                     {
                                         pass.setVehicle(givenVehicle);
                                         givenVehicle.setParkingPass(pass);
-                                        Console.WriteLine("\nTransfer Complete!\n");
-                                        Console.WriteLine("Parking pass is successfully transferred to this vehicle with following details:\n");
+                                        Console.WriteLine("\nSuccessful transfer of season pass to the current vehicle with following details:\n");
                                         (pass.Vehicle).printVehicleDetails(pass.Vehicle);
                                     }
                                     else
@@ -405,7 +419,7 @@ namespace SE_Assignment
                                 }
                                 else
                                 {
-                                    Console.WriteLine("This vehicle entered has a parking pass already.");
+                                    Console.WriteLine("This vehicle entered has a season pass already.");
                                     Console.WriteLine("Restarting transfer process");
                                 }
                             }
@@ -415,22 +429,19 @@ namespace SE_Assignment
                                 Console.WriteLine("Restarting transfer process");
                             }
                         }
-                        else
-                        {
-                            Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
-                        }
-                    }
+                      
+                    
 
                 }
 
                 else
                 {
-                    Console.WriteLine("You do not have any valid vehicles to transfer pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
+                    Console.WriteLine("You do not have any valid vehicles to transfer season pass from. For example, your vehicle(s) may have parking status, parked or validity status, expired.");
                 }
             }
             else
             {
-                Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer parking pass to this vehicle.");
+                Console.WriteLine("You do not have any vehicles in your personal list of vehicles. Please add one to transfer season pass to this vehicle.");
             }
             return true;
         }
