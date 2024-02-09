@@ -8,6 +8,7 @@ namespace SE_Assignment
 {
     class Monthly : SeasonParkingPass
     {
+        public double MonthlyRate { get; set; }
         public override string passType { get; set; } = "m";
         private int latestPassID;
         public override int LatestPassID
@@ -32,7 +33,28 @@ namespace SE_Assignment
             this.terminationReason = reason;
         }
         
+        public double calculateRefund()
+        {
+            int endNum = endMonth.Month;
+            int currentNum = DateTime.Now.Month;
 
+            if (endNum > currentNum)
+            {
+                double amount = (endNum - currentNum) * MonthlyRate;
+                return amount;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
+        public class PaymentMode
+        {
+            public void Refund(double amount)
+            {
+
+            }
+        }
     }
 }

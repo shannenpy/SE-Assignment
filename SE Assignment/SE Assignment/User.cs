@@ -527,10 +527,9 @@ namespace SE_Assignment
                     // UC-003 Step 9.1
                     else
                     {
-
+                        
                     }
                     passChosen.ValidityStatus = "terminated";
-                    Console.WriteLine(passChosen.ValidityStatus + passChosen.terminationReason);
                 }
                 // UC-003 Step 5.1
                 else
@@ -541,70 +540,6 @@ namespace SE_Assignment
             }
             return false; 
         }
-
-
-        //    bool conditionMet = false;
-        //    do
-        //    {
-        //        Console.Write("Enter which season pass you wish to terminate: ");
-        //        int option = Convert.ToInt32(Console.ReadLine());
-        //        //UC-003 Step 4
-        //        if (option > 0 && option < count)
-        //        {
-        //            SeasonParkingPass passChosen = SPPList[option - 1];
-        //            string valid = passChosen.ValidityStatus;
-        //            //UC-003 Step 5
-        //            if (valid == "valid")
-        //            {
-        //                //UC-003 Step 6
-        //                Console.WriteLine("Enter reason for termination: ");
-        //                string reason = Console.ReadLine();
-        //                passChosen.SetTerminationReason(reason);
-
-        //                //UC-003 Step 9
-        //                if (passChosen.passType == "d")
-        //                {
-        //                    Console.WriteLine("Daily pass terminated");
-        //                    //SPPList.Remove(passChosen);
-        //                    return true;
-        //                }
-        //                //UC-003 Step 9.1
-        //                else
-        //                {
-
-        //                }
-        //            }
-        //            //UC-003 Step 5.1
-        //            else
-        //            {
-        //                Console.WriteLine("Pass is expired and will automatically be terminated after 6 months.");
-        //                return false;
-        //            }
-        //            conditionMet = true;
-        //        }
-        //        //UC-003 Step 4.b.1
-        //        else if (option == count)
-        //        {
-        //            Console.WriteLine("Termination cancelled.");
-        //            conditionMet = true;
-        //            return false;
-        //        }
-        //        //UC-003 Step 4.a.1
-        //        else
-        //        {
-        //            Console.WriteLine("Please enter a valid option.");
-        //        }
-        //    } while (!conditionMet);
-
-
-
-        //}
-        ////UC-003 Step 2.1
-        //else
-        //{
-        //    Console.WriteLine("You have no passes.");
-        //    return false;
-        //}
     }
 }
 
