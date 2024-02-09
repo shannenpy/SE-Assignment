@@ -328,17 +328,17 @@ namespace SE_Assignment
                     {
                         //UC001 basic flow 10,11,12,13,14
                         SeasonParkingPass userpass = getPass(spchoice - 1);
-                        if(userpass.PassType == "m")
+                        if(userpass.passType() == "m")
                         {
-                            userpass.EndDate = DateTime.Now.AddMonths(1);
+                            userpass.endDate = DateTime.Now.AddMonths(1);
                         }
-                        else if (userpass.PassType == "d")
+                        else if (userpass.passType() == "d")
                         {}
                         //execute make mayment use case
                         Console.WriteLine("Updated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
-                       // Console.WriteLine("Start Date: " + userpass.EndDate);
-                        //Console.WriteLine("End Date: " + userpass.StartDate);
+                        Console.WriteLine("Start Date: " + userpass.startDate);
+                        Console.WriteLine("End Date: " + userpass.endDate);
                         Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
 
                         renewing = false;
