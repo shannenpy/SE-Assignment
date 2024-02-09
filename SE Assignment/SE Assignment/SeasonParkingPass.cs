@@ -18,6 +18,7 @@ namespace SE_Assignment
         string ParkStatus { get; set; }
         string ValidityStatus { get; set; }
         int generatePassID();
+        string PassType { get; set; }
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
 

@@ -297,9 +297,14 @@ namespace SE_Assignment
                     if (confirmpayment == 1)
                     {
                         //UC001 basic flow 10,11,12,13,14
-                        //* Only for monthly if current month > pass enddate (expired), check if passes left > 0, update and -= 1 passes left
-                        //execute make mayment use case
                         SeasonParkingPass userpass = getPass(spchoice - 1);
+                        if(userpass.PassType == "m")
+                        {
+                            userpass.EndDate = DateTime.Now.AddMonths(1);
+                        }
+                        else if (userpass.PassType == "d")
+                        {}
+                        //execute make mayment use case
                         Console.WriteLine("Updated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
                         Console.WriteLine("Start Date: " + userpass.EndDate);
