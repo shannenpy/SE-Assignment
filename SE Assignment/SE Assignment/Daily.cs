@@ -8,11 +8,8 @@ namespace SE_Assignment
 {
     class Daily : SeasonParkingPass
     {
-        public override string passType()
-        {
-            return "d";
-        }
-       
+        public override string passType { get; set; } = "d";
+
         private int latestPassID;
         public override int LatestPassID
         {
@@ -26,13 +23,15 @@ namespace SE_Assignment
             set => passID = value;
         }
 
-        public Daily(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
+        public Daily(Vehicle v, int id, string validityStatus, string passType, string reason)//originally parking pass have parkStatus, exited and validityStatus, valid
         {
             Vehicle = v;
             PassID = id;
             ParkStatus = "exited";
             ValidityStatus = "valid";
             LatestPassID = 1;
+            this.ValidityStatus = validityStatus;
+            this.terminationReason = reason;
         }
         
         

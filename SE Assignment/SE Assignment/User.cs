@@ -364,7 +364,7 @@ namespace SE_Assignment
             //Given that the user has a valid daily season pass
             Vehicle myvehicle = new Vehicle("lpn", 2, 0);
 
-            Daily dailypass = new Daily(myvehicle, 2);
+            Daily dailypass = new Daily(myvehicle, 2, "valid", "d", null);
             //adding this vehicle to list of vehicles with pass
             myvehicle.addVehiclesWithPass(myvehicle);
             //adding the pass to user's list of season passes
@@ -451,5 +451,99 @@ namespace SE_Assignment
             }
             return true;
         }
+
+        public bool terminateSeasonPass()
+        {
+            //create user SPPList
+            Vehicle myvehicle = new Vehicle("lpn", 2, 0);
+            List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
+            Daily spp1 = new Daily( myvehicle, 1, "valid", "d", null);
+            SPPList.Add(spp1);
+            Monthly spp2 = new Monthly(myvehicle, 2, "expired", "m", null);
+            SPPList.Add(spp2);
+            Monthly spp3 = new Monthly(myvehicle, 3, "valid", "m", null);
+            SPPList.Add(spp3);
+            Daily spp4 = new Daily(myvehicle, 4, "expired", "d", null);
+            SPPList.Add(spp4);
+
+            int count = 0;
+            if (SPPList != null)
+            {
+                //UC-003 Step 2
+                foreach (SeasonParkingPass spp in SPPList)
+                {
+                    count += 1;
+                    Console.Write($"{count}. PassID: {spp.PassID}     ");
+                    Console.WriteLine("Type: " + spp.passType);
+                }
+                count += 1;
+                Console.WriteLine($"{count}. Cancel termination.");
+
+                //UC-003 Step 3
+                bool conditionMet = false;
+                do
+                {
+                    Console.Write("Enter which season pass you wish to terminate: ");
+                    int option = Convert.ToInt32(Console.ReadLine());
+                    //UC-003 Step 4
+                    if (option > 0 && option < count)
+                    {
+                        SeasonParkingPass passChosen = SPPList[option - 1];
+                        string valid = passChosen.ValidityStatus;
+                        //UC-003 Step 5
+                        if (valid == "valid")
+                        {
+                            //UC-003 Step 6
+                            Console.WriteLine("Enter reason for termination: ");
+                            string reason = Console.ReadLine();
+                            passChosen.SetTerminationReason(reason);
+
+                            //UC-003 Step 9
+                            if (passChosen.passType == "d")
+                            {
+                                Console.WriteLine("Daily pass terminated");
+                                //SPPList.Remove(passChosen);
+                                return true;
+                            }
+                            //UC-003 Step 9.1
+                            else
+                            {
+
+                            }
+                        }
+                        //UC-003 Step 5.1
+                        else
+                        {
+                            Console.WriteLine("Pass is expired and will automatically be terminated after 6 months.");
+                            return false;
+                        }
+                        conditionMet = true;
+                    }
+                    //UC-003 Step 4.b.1
+                    else if (option == count)
+                    {
+                        Console.WriteLine("Termination cancelled.");
+                        conditionMet = true;
+                        return false;
+                    }
+                    //UC-003 Step 4.a.1
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid option.");
+                    }
+                } while (!conditionMet);
+
+
+
+            }
+            //UC-003 Step 2.1
+            else
+            {
+                Console.WriteLine("You have no passes.");
+                return false;
+            }
+        }
     }
 }
+
+ 

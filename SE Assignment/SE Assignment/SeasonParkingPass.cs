@@ -52,7 +52,13 @@ namespace SE_Assignment
             LatestPassID = LatestPassID + 1;
             return LatestPassID;
         }
-        public abstract string passType();
+        public abstract string passType { get; set; }
+        public string terminationReason { get; set; } = null;
+        public void SetTerminationReason(string reason)
+        {
+            terminationReason = reason;
+        }
+
 
     }
 }
