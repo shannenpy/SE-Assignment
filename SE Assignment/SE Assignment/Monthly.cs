@@ -49,13 +49,5 @@ namespace SE_Assignment
                 return 0;
             }
         }
-
-        //public class PaymentMode
-        //{
-        //    public void Refund(double amount)
-        //    {
-
-        //    }
-        //}
     }
 }
