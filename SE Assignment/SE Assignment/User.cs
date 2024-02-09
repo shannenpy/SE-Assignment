@@ -21,6 +21,7 @@ namespace SE_Assignment
         private Subject? monthlyCollection { get; set; }
         private List<Application> applications { get; set; } = new List<Application>();
         private List<PaymentMode> paymentModeList;
+        private double? refund { get; set; }
 
         public User()
         {
@@ -481,17 +482,17 @@ namespace SE_Assignment
 
         public bool terminateSeasonPass()
         {
-            //// Create user SPPList
-            //Vehicle myvehicle = new Vehicle("lpn", 2, 0);
-            //List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
-            //Daily spp1 = new Daily(myvehicle, 1, "valid", "d", null);
-            //SPPList.Add(spp1);
-            //Monthly spp2 = new Monthly(myvehicle, 2, "expired", "m", null);
-            //SPPList.Add(spp2);
-            //Monthly spp3 = new Monthly(myvehicle, 3, "valid", "m", null);
-            //SPPList.Add(spp3);
-            //Daily spp4 = new Daily(myvehicle, 4, "expired", "d", null);
-            //SPPList.Add(spp4);
+            // Create user SPPList
+            Vehicle myvehicle = new Vehicle("lpn", 2, 0);
+            List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
+            Daily spp1 = new Daily(myvehicle, 1, "valid", "d", null);
+            SPPList.Add(spp1);
+            Monthly spp2 = new Monthly(myvehicle, 2, "expired", "m", null);
+            SPPList.Add(spp2);
+            Monthly spp3 = new Monthly(myvehicle, 3, "valid", "m", null);
+            SPPList.Add(spp3);
+            Daily spp4 = new Daily(myvehicle, 4, "expired", "d", null);
+            SPPList.Add(spp4);
 
             int count = 0;
             if (SPPList != null)
@@ -553,7 +554,13 @@ namespace SE_Assignment
                     // UC-003 Step 9.1
                     else
                     {
-                        
+                        double amount = passChosen.calculateRefund();
+                        this.refund = amount;
+                        Console.WriteLine($"You have been refunded ${amount}.");
+                        MonthlyCollection waitingList = MonthlyCollection.getInstance();
+                        int passesLeft = waitingList.getPassesLeft();
+                        passesLeft -= 1;
+                        waitingList.notifyObservers();
                     }
                     passChosen.ValidityStatus = "terminated";
                 }
@@ -568,6 +575,5 @@ namespace SE_Assignment
         }
     }
 }
-
 
  

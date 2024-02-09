@@ -60,7 +60,7 @@ namespace SE_Assignment
         {
             terminationReason = reason;
         }
-
+        public abstract double calculateRefund();
         
 
     }

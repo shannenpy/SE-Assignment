@@ -33,12 +33,11 @@ namespace SE_Assignment
             this.ValidityStatus = validityStatus;
             this.terminationReason = reason;
         }
-        
-        
-        
 
-
-
+        public override double calculateRefund()
+        {
+            return 0;
+        }
 
     }
 }
