@@ -11,6 +11,16 @@ using System.Security.Cryptography;
 User user = new User();
 MonthlyCollection waitingList = MonthlyCollection.getInstance();
 
+List<SeasonParkingPass> SPPList = new List<SeasonParkingPass>();
+Daily spp1 = new Daily(1, "valid", "d");
+SPPList.Add(spp1);
+Monthly spp2 = new Monthly(2, "expired", "m");
+SPPList.Add(spp2);
+Monthly spp3 = new Monthly(3, "valid", "m");
+SPPList.Add(spp3);
+Daily spp4 = new Daily(4, "expired", "d");
+SPPList.Add(spp4);
+
 Console.WriteLine("----- Welcome to the ICTP Parking Management System -----");
 Console.WriteLine("Menu options:");
 Console.WriteLine("1. Apply for season pass");
@@ -59,7 +69,7 @@ switch (opt)
     case 3: // transfer
         break;
     case 4: // terminate
-        break;
+        user.terminateSeasonPass();
 }
 
 

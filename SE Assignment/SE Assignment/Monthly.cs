@@ -9,17 +9,15 @@ namespace SE_Assignment
     class Monthly : SeasonParkingPass
     {
         private string parkStatus;
-        private string validityStatus;
-        private int passID;
         private int latestPassID;
         private Vehicle vehicle;
+        public override string PassType { get; set; } = "m";
 
-        public Monthly(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
+        public Monthly(/*Vehicle v,*/ int id, string validityStatus, string PassType) : base(id, validityStatus, PassType)//originally parking pass have parkStatus, exited and validityStatus, valid
         {
-            vehicle = v;
-            passID = id;
-            parkStatus = "exited";
-            validityStatus = "valid";
+            //vehicle = v;
+            //parkStatus = "exited";
+            this.PassType = PassType;
         }
 
         public string ParkStatus
@@ -102,5 +100,12 @@ namespace SE_Assignment
         {
             passID = id;
         }
+
+        //private float monthlyRate { get; set; }
+
+        //public Monthly(int passId, string parkStatus, string validityStatus, int latestPassID, float monthlyRate) : base(passId, parkStatus, validityStatus, latestPassID)
+        //{
+        //    this.monthlyRate = monthlyRate;
+        //}
     }
 }

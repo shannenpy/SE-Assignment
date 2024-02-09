@@ -25,7 +25,7 @@ namespace SE_Assignment
             this.SPPList = new List<SeasonParkingPass>();
         }
 
-        public User(string id, string name, int userType, string username, string password, string mobileNo)
+        public User(string id, string name, int userType, string username, string password, string mobileNo, List<SeasonParkingPass> SPPList)
         {
             this.id = id;
             this.name = name;
@@ -321,6 +321,72 @@ namespace SE_Assignment
             }
 
             return true;
+        }
+
+        //UC-003
+        public bool terminateSeasonPass()
+        {
+            while (true)
+            {
+                //UC-003 Step 2
+                int count = 0;
+                if (SPPList != null)
+                {
+                    foreach (SeasonParkingPass spp in SPPList)
+                    {
+                        count += 1;
+                        Console.Write($"{count}. PassID: {spp.PassId}     ");
+                        Console.WriteLine("Type: " + spp.PassType);
+                    }
+                    count += 1;
+                    Console.WriteLine($"{count}. Cancel termination.");
+
+                }
+                //UC-003 Step 3
+                Console.Write("Enter which season pass you wish to terminate: ");
+                //int choice = Convert.ToInt32(Console.ReadLine());
+
+                //UC-003 Step 4.a.1.
+                while (Convert.ToInt32(Console.ReadLine()) < 0 || Convert.ToInt32(Console.ReadLine()) > count)
+                {
+                    //UC-003 Step 3
+                    Console.Write("Enter which season pass you wish to terminate: ");
+                    Convert.ToInt32(Console.ReadLine());
+                }
+                int choice = Convert.ToInt32(Console.ReadLine());
+                //UC-003 Step 4
+                if (choice > 0 && choice < count)
+                    {
+                        string valid = SPPList[choice - 1].ValidityStatus;
+                        //UC-003 Step 5
+                        if (valid == "valid")
+                        {
+                            //UC-003 Step 6
+                            Console.WriteLine("Enter reason for termination: ");
+                            //UC-003 Step 8
+                            while (Console.ReadLine() == "")
+                            {
+                                //UC-003 Step 7
+                                string reason = Console.ReadLine();
+                            }
+                        }
+                        //UC-003 Step 5.1
+                        else
+                        {
+                            Console.WriteLine("Pass is expired and will automatically be terminated after 6 months.");
+                            return false;
+                        }
+                    }
+                    //UC-003 Step 4.b.1 (Choose no termination)
+                    else if (choice == count)
+                    {
+                        Console.WriteLine("Exiting Terminate Season Pass.");
+                        return false;
+                    }
+                }
+                
+            }
+            
         }
     }
 }

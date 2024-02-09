@@ -9,17 +9,16 @@ namespace SE_Assignment
     class Daily : SeasonParkingPass
     {
         private string parkStatus;
-        private string validityStatus;
-        private int passID;
         private int latestPassID;
         private Vehicle vehicle;
 
-        public Daily(Vehicle v, int id)//originally parking pass have parkStatus, exited and validityStatus, valid
+        public override string PassType { get; set; } = "d";
+
+        public Daily(/*Vehicle v,*/ int id, string validityStatus, string PassType):base(id, validityStatus, PassType)//originally parking pass have parkStatus, exited and validityStatus, valid
         {
-            vehicle = v;
-            passID = id;
-            parkStatus = "exited";
-            validityStatus = "valid";
+            //vehicle = v;
+            //parkStatus = "exited";
+            this.PassType = PassType;
         }
 
         public string ParkStatus
@@ -29,19 +28,19 @@ namespace SE_Assignment
 
         }
 
-        public string ValidityStatus
-        {
+        //public string ValidityStatus
+        //{
 
-            get => validityStatus;
-            set => validityStatus = value;
-        }
+        //    get => validityStatus;
+        //    set => validityStatus = value;
+        //}
 
-        public int PassID
-        {
-            get => passID;
-            set => passID = value;
+        //public int PassID
+        //{
+        //    get => passID;
+        //    set => passID = value;
 
-        }
+        //}
 
         public int LatestPassID
         {
@@ -103,5 +102,17 @@ namespace SE_Assignment
                 return string.Empty;
             }
         }
+
+
+        //private float dailyRate { get; set; }
+        //private float fixedAmount { get; set; }
+
+        //public Daily(int passId, string parkStatus, string validityStatus, int latestPassID, float dailyRate, float fixedAmount) : base(passId, parkStatus, validityStatus, latestPassID)
+        //{
+        //    this.dailyRate = dailyRate;
+        //    this.fixedAmount = fixedAmount;
+        //}
+
+        //public bool refund() { return false; }
     }
 }
