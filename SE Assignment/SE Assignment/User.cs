@@ -530,7 +530,7 @@ namespace SE_Assignment
 
                     }
                     passChosen.ValidityStatus = "terminated";
-                    Console.WriteLine(passChosen.ValidityStatus);
+                    Console.WriteLine(passChosen.ValidityStatus + passChosen.terminationReason);
                 }
                 // UC-003 Step 5.1
                 else
