@@ -330,15 +330,15 @@ namespace SE_Assignment
                         SeasonParkingPass userpass = getPass(spchoice - 1);
                         if(userpass.passType() == "m")
                         {
-                            userpass.endDate = DateTime.Now.AddMonths(1);
+                            userpass.endMonth = DateTime.Now.AddMonths(1);
                         }
                         else if (userpass.passType() == "d")
                         {}
                         //execute make mayment use case
                         Console.WriteLine("Updated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
-                        Console.WriteLine("Start Date: " + userpass.startDate);
-                        Console.WriteLine("End Date: " + userpass.endDate);
+                        Console.WriteLine("Start Date: " + userpass.startMonth);
+                        Console.WriteLine("End Date: " + userpass.endMonth);
                         Console.WriteLine("Validity Status: " + userpass.getValidityStatus());
 
                         renewing = false;
