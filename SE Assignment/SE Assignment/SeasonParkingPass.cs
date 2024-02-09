@@ -47,6 +47,8 @@ namespace SE_Assignment
         public string ParkStatus { get; set; }
         public string ValidityStatus { get; set; }
         public abstract int LatestPassID { get; set; }
+        public DateTime startMonth { get; set; }
+        public DateTime endMonth { get; set; }
         public int generatePassID()
         {
             LatestPassID = LatestPassID + 1;
