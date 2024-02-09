@@ -8,7 +8,16 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 //User user = new User("s12345678", "Dr Oon", 0, "s12345678", "password123", "91234567");
+
 User user = new User();
+
+//Test Case (can be changed)
+PaymentMode p = new PaymentMode("card",987654321);
+Vehicle v = new Vehicle("12345", 123, 1);
+SeasonParkingPass s = new Monthly(v, 10242384, "valid", "m", null);
+user.addSPPList(s);
+user.changePaymentMode(p);
+
 
 MonthlyCollection waitingList = MonthlyCollection.getInstance();
 

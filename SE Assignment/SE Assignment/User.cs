@@ -275,10 +275,14 @@ namespace SE_Assignment
                     count++;
                     Console.WriteLine($"\nSeason Parking Pass {count} details:");
                     Console.WriteLine("ID: " + p.PassID);
-                    //Console.WriteLine("Start Date: " + p.EndDate);
-                    //Console.WriteLine("End Date: " + p.StartDate);
-                    Console.WriteLine("Validity Status: " + p.getValidityStatus());
+                    Console.WriteLine("Start Date: " + p.startMonth);
+                    Console.WriteLine("End Date: " + p.endMonth);
+                    Console.WriteLine("Validity Status: " + p.getValidityStatus() + "\n");
                 }
+            }
+            else 
+            { 
+                Console.WriteLine("No Season Parking Passes!"); 
             }
         }
 
@@ -298,8 +302,10 @@ namespace SE_Assignment
             if (paymentModeList == null)
             {
                 paymentModeList = new List<PaymentMode>();
+                paymentModeList.Add(p);
             }
-            paymentModeList[0] = (p); // Replace default payment mode with new payment mode
+            else
+            { paymentModeList[0] = (p);} // Replace default payment mode with new payment mode
         }
 
         public bool renewSeasonPass()
@@ -336,7 +342,7 @@ namespace SE_Assignment
                         else if (userpass.passType == "d")
                         { }
                         //execute make mayment use case
-                        Console.WriteLine("Updated Pass Details:");
+                        Console.WriteLine("\nUpdated Pass Details:");
                         Console.WriteLine("ID: " + userpass.PassID);
                         Console.WriteLine("Start Date: " + userpass.startMonth);
                         Console.WriteLine("End Date: " + userpass.endMonth);
@@ -346,7 +352,7 @@ namespace SE_Assignment
                     }
                     else if (confirmpayment == 2)
                     {
-                        Console.Write("New Payment mode: ");
+                        Console.Write("\nNew Payment mode: ");
                         String newMode = Console.ReadLine();
                         Console.Write("New Card No: ");
                         int newCardNo = Convert.ToInt32(Console.ReadLine());
